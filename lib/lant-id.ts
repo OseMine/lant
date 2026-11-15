@@ -29,7 +29,7 @@ function decodePlatformId(encoded: string): string {
     return encoded;
 }
 
-export function linkedId(platform: string, type: string, platformId: string): string {
+export function lantId(platform: string, type: string, platformId: string): string {
     const typeCode = TYPE_TO_CODE[type.toLowerCase() as keyof typeof TYPE_TO_CODE];
     const platCode = PLATFORM_TO_CODE[platform.toLowerCase() as keyof typeof PLATFORM_TO_CODE];
 
@@ -40,7 +40,7 @@ export function linkedId(platform: string, type: string, platformId: string): st
     return `${typeCode}${platCode}-${encodedId}`;
 }
 
-export function decodeLinkedId(id: string, routeType?: string): { platform: string; type: string; platformId: string } | null {
+export function decodelantId(id: string, routeType?: string): { platform: string; type: string; platformId: string } | null {
     if (!id || typeof id !== 'string') return null;
 
     const sepIndex = id.indexOf('-');
@@ -105,6 +105,6 @@ export function decodeLinkedId(id: string, routeType?: string): { platform: stri
     return null;
 }
 
-export function isValidLinkedId(id: string): boolean {
-    return decodeLinkedId(id) !== null;
+export function isValidlantId(id: string): boolean {
+    return decodelantId(id) !== null;
 }

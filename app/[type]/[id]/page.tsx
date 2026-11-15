@@ -1,4 +1,4 @@
-import { decodeLinkedId } from "@/lib/linked-id";
+import { decodelantId } from "@/lib/lant-id";
 import { getMusicDataCached } from "@/lib/songlink";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import EntityHero from "@/components/EntityHero";
 import UnsupportedContent from "@/components/UnsupportedContent";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export const instant = false;
 
@@ -16,7 +16,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { type, id } = await params;
-  const decoded = decodeLinkedId(id, type);
+  const decoded = decodelantId(id, type);
 
   if (!decoded || decoded.type !== type) {
     return {
@@ -55,14 +55,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title,
         description,
         url: canonicalUrl,
-        siteName: "Linked",
+        siteName: "lant",
         type: ogType as "music.song" | "music.album",
         images: [
           {
             url: ogImageUrl,
             width: 1200,
             height: 630,
-            alt: `${data.name}${data.artist ? ` by ${data.artist}` : ""} - Linked`,
+            alt: `${data.name}${data.artist ? ` by ${data.artist}` : ""} - lant`,
           },
         ],
         ...(type === "song" && data.artist && { musician: data.artist }),
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   } catch {
     return {
-      title: "Linked",
+      title: "lant",
       description: "Share music across any platform with one universal link.",
       robots: { index: false, follow: true },
     };
@@ -107,7 +107,7 @@ function MusicEntityJsonLd({ data, type, id }: { data: any; type: string; id: st
     description: `Listen to ${data.name}${data.artist ? ` by ${data.artist}` : ""} on any music platform.`,
     publisher: {
       "@type": "Organization",
-      name: "Linked",
+      name: "lant",
       url: BASE_URL,
     },
   };
@@ -125,7 +125,7 @@ function MusicEntityJsonLd({ data, type, id }: { data: any; type: string; id: st
       subjectOf: {
         "@type": "WebPage",
         url: canonicalUrl,
-        name: `${data.name} - Linked`,
+        name: `${data.name} - lant`,
       },
     };
   } else if (type === "album") {
@@ -164,7 +164,7 @@ function MusicEntityJsonLd({ data, type, id }: { data: any; type: string; id: st
 
 export default async function EntityPage({ params }: PageProps) {
   const { type, id } = await params;
-  const decoded = decodeLinkedId(id, type);
+  const decoded = decodelantId(id, type);
 
   if (!decoded || decoded.type !== type) {
     notFound();

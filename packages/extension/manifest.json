@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Linked - Music Link Unifier",
-  "description": "Automatically detects music platform URLs and redirects to Linked universal pages.",
+  "name": "lant - Music Link Unifier",
+  "description": "Automatically detects music platform URLs and redirects to lant universal pages.",
   "version": "1.0.0",
   "permissions": ["activeTab"],
   "host_permissions": [

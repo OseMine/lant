@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 const SNIPPETS = {
-  bash: `curl -X POST https://linkedapp.ddns.net/api/resolve \\\n  -H "Content-Type: application/json" \\\n  -d '{"url": "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm"}'`,
-  js: `const res = await fetch('/api/resolve', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ url: 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm' })\n});\nconst data = await res.json();\nconsole.log(data.linkedUrl);`,
-  py: `import requests\nr = requests.post('https://linkedapp.ddns.net/api/resolve', json={\n    'url': 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm'\n})\nprint(r.json()['linkedUrl'])`,
+  bash: `curl -X POST https://lant.lol/api/resolve \\\n  -H "Content-Type: application/json" \\\n  -d '{"url": "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm"}'`,
+  js: `const res = await fetch('/api/resolve', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ url: 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm' })\n});\nconst data = await res.json();\nconsole.log(data.lantUrl);`,
+  py: `import requests\nr = requests.post('https://lant.lol/api/resolve', json={\n    'url': 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm'\n})\nprint(r.json()['lantUrl'])`,
 };
 
 export function CodeTabs() {

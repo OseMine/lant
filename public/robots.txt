@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://linkedapp.ddns.net/sitemap.xml
+Sitemap: https://lant.lol/sitemap.xml
 
 # Crawl-delay for respectful crawling (optional)
 # Crawl-delay: 10

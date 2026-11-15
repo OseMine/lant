@@ -4,11 +4,11 @@ export interface HistoryEntry {
   artist: string | null;
   image: string | null;
   type: "song" | "album" | "artist";
-  linkedUrl: string;
+  lantUrl: string;
   timestamp: number;
 }
 
-const STORAGE_KEY = "linked_history";
+const STORAGE_KEY = "lant_history";
 const MAX_ENTRIES = 50;
 
 export function getHistory(): HistoryEntry[] {

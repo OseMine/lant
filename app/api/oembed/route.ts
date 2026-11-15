@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   const title = data?.name || "Music";
   const author = data?.artist || "";
   const thumbnail = data?.image || "";
-  const siteName = "Linked";
+  const siteName = "lant";
 
   const width = Math.min(Math.max(parseInt(maxWidth || "600", 10), 200), 1200);
   const height = Math.round(width * 0.6);
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     title,
     author,
     thumbnail,
-    linkedUrl: `/${parsed.entityType}/${parsed.linkedId}`,
+    lantUrl: `/${parsed.entityType}/${parsed.lantId}`,
     theme,
   });
 
@@ -66,10 +66,10 @@ function buildEmbedHtml(opts: {
   title: string;
   author: string;
   thumbnail: string;
-  linkedUrl: string;
+  lantUrl: string;
   theme: string;
 }): string {
-  const { title, author, thumbnail, linkedUrl, theme } = opts;
+  const { title, author, thumbnail, lantUrl, theme } = opts;
   const isDark = theme === "dark";
   const bg = isDark ? "#1a1a2e" : "#ffffff";
   const fg = isDark ? "#e0e0e0" : "#1a1a2e";
@@ -85,7 +85,7 @@ function buildEmbedHtml(opts: {
   <div style="flex:1;min-width:0;">
     <div style="font-size:16px;font-weight:600;color:${fg};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(title)}</div>
     <div style="font-size:13px;color:${sub};margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(author)}</div>
-    <a href="${escapeAttr(linkedUrl)}" style="display:inline-block;margin-top:8px;padding:6px 14px;background:#6c5ce7;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Open in Linked</a>
+    <a href="${escapeAttr(lantUrl)}" style="display:inline-block;margin-top:8px;padding:6px 14px;background:#6c5ce7;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Open in lant</a>
   </div>
 </div>`;
 }

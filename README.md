@@ -1,6 +1,6 @@
-# Linked – Share music across platforms
+# lant – Share music across platforms
 
-Linked provides universal music links that resolve to the correct content on any platform (Spotify, Apple Music, Deezer, Tidal, YouTube, YouTube Music, Amazon Music, Bandcamp).
+lant provides universal music links that resolve to the correct content on any platform (Spotify, Apple Music, Deezer, Tidal, YouTube, YouTube Music, Amazon Music, Bandcamp).
 
 ## Features
 
@@ -27,7 +27,7 @@ Linked provides universal music links that resolve to the correct content on any
 - **Podcast/audiobook handling:** Non-music entities show a graceful, region-aware fallback instead of empty links.
 
 ### Products & tooling
-- **Browser extension** (`packages/extension/`): Manifest V3 extension that detects music URLs and offers a one-click "Open in Linked" banner/button.
+- **Browser extension** (`packages/extension/`): Manifest V3 extension that detects music URLs and offers a one-click "Open in lant" banner/button.
 - **CLI tool** (`packages/cli/`): Resolve, detect, and open music links directly from the terminal.
 - **Turborepo structure:** The repo is laid out for a monorepo (root `turbo.json`, `apps/` + `packages/` workspaces).
 
@@ -40,11 +40,11 @@ Linked provides universal music links that resolve to the correct content on any
 
 ## APIs
 
-The app exposes its resolution engine over HTTP, so you can generate and resolve Linked URLs programmatically. Below is a full reference; an interactive reference lives at [/docs](https://linkedapp.ddns.net/docs).
+The app exposes its resolution engine over HTTP, so you can generate and resolve lant URLs programmatically. Below is a full reference; an interactive reference lives at [/docs](https://lant.lol/docs).
 
 ### POST `/api/resolve`
 
-Takes a music URL and returns the resolved entity (metadata + links) plus the generated Linked ID/URL. Rate-limited to 30 req/min.
+Takes a music URL and returns the resolved entity (metadata + links) plus the generated lant ID/URL. Rate-limited to 30 req/min.
 
 **Request body:**
 ```json
@@ -77,8 +77,8 @@ Takes a music URL and returns the resolved entity (metadata + links) plus the ge
     "platformId": "6D7fARfm0eMpAu0j0AQcUB",
     "url": "https://open.spotify.com/track/6D7fARfm0eMpAu0j0AQcUB"
   },
-  "linkedId": "ssp-6D7fARfm0eMpAu0j0AQcUB",
-  "linkedUrl": "/song/ssp-6D7fARfm0eMpAu0j0AQcUB"
+  "lantId": "ssp-6D7fARfm0eMpAu0j0AQcUB",
+  "lantUrl": "/song/ssp-6D7fARfm0eMpAu0j0AQcUB"
 }
 ```
 
@@ -86,7 +86,7 @@ Takes a music URL and returns the resolved entity (metadata + links) plus the ge
 
 ### GET `/api/entity/[type]/[id]`
 
-Resolves a Linked ID directly into the same shape as above. `type` is one of `song`, `album`, `artist`.
+Resolves a lant ID directly into the same shape as above. `type` is one of `song`, `album`, `artist`.
 
 ```
 GET /api/entity/song/ssp-6D7fARfm0eMpAu0j0AQcUB
@@ -152,7 +152,7 @@ Every entity can be embedded as a self-contained mini-player (album tracklists +
 
 ```html
 <iframe
-  src="https://linkedapp.ddns.net/embed/song/ssp-6D7fARfm0eMpAu0j0AQcUB"
+  src="https://lant.lol/embed/song/ssp-6D7fARfm0eMpAu0j0AQcUB"
   width="400"
   height="200"
   frameborder="0"
@@ -167,19 +167,19 @@ The correct embed code is also available on each entity page under the **Embed**
 Resolve music links from the terminal:
 
 ```bash
-npx linked resolve <url>      # Resolve to a universal Linked URL
-npx linked detect <url>       # Detect the platform
-npx linked open <url>         # Resolve and open in the browser
+npx lant resolve <url>      # Resolve to a universal lant URL
+npx lant detect <url>       # Detect the platform
+npx lant open <url>         # Resolve and open in the browser
 ```
 
 ## Browser extension
 
-A Manifest V3 extension lives in [`packages/extension/`](packages/extension/). It auto-detects music URLs on supported platforms and shows an "Open in Linked" banner. To load it: `chrome://extensions` → Developer mode → Load unpacked → select the folder.
+A Manifest V3 extension lives in [`packages/extension/`](packages/extension/). It auto-detects music URLs on supported platforms and shows an "Open in lant" banner. To load it: `chrome://extensions` → Developer mode → Load unpacked → select the folder.
 
 ## How it works
 
 1. **Source Parsing:** When you paste a link, the app detects the platform and entity type (song/album/artist) using RegEx patterns in `lib/parsers.ts`.
-2. **Entity Encoding:** The app creates a "Linked ID" (`/[type]/[code]-[encodedId]`) which encodes the platform and entity ID.
+2. **Entity Encoding:** The app creates a "lant ID" (`/[type]/[code]-[encodedId]`) which encodes the platform and entity ID.
 3. **Data Resolution (`lib/songlink.ts`):**
    - **Source resolution:** It tries to fetch metadata (name, artist, cover, ISRC) from the source platform's API (Deezer, iTunes, Spotify, YouTube oEmbed, Tidal).
    - **ISRC propagation:** For songs with an ISRC, it distributes this ID to other supported platforms to find corresponding links.
@@ -188,7 +188,7 @@ A Manifest V3 extension lives in [`packages/extension/`](packages/extension/). I
 
 ## How to get a link
 
-Simply copy the share URL from your music app (Spotify, Apple, Deezer, etc.) and paste it into the main page to generate a universal `Linked` URL.
+Simply copy the share URL from your music app (Spotify, Apple, Deezer, etc.) and paste it into the main page to generate a universal `lant` URL.
 
 ## Environment variables
 
@@ -206,7 +206,7 @@ Copy `.env.example` to `.env.local` and fill in any keys you have. All integrati
 ```
 app/                  # Next.js App Router (pages + API routes)
 components/           # React components (EntityHero, LinkHistory, etc.)
-lib/                  # Core logic: parsers, linked-id, songlink, lyrics, qr, history, rate-limit, i18n
+lib/                  # Core logic: parsers, lant-id, songlink, lyrics, qr, history, rate-limit, i18n
 public/               # Static assets incl. PWA manifest + service worker
 packages/
   extension/          # Chrome/Firefox Manifest V3 browser extension
@@ -216,12 +216,12 @@ packages/
 ## Examples
 
 ```bash
-# Generate a Linked URL from a music link
+# Generate a lant URL from a music link
 curl -X POST http://localhost:3000/api/resolve \
   -H "Content-Type: application/json" \
   -d '{"url":"https://open.spotify.com/track/6D7fARfm0eMpAu0j0AQcUB"}'
 
-# Resolve an existing Linked ID
+# Resolve an existing lant ID
 curl http://localhost:3000/api/entity/album/lsp-503iC3dEbNox92qC6vJOiP
 
 # Search

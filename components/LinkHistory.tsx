@@ -36,7 +36,7 @@ export default function LinkHistory() {
       <div className="home-history-list">
         {history.map((entry) => (
           <div key={entry.id} className="home-history-item">
-            <Link href={entry.linkedUrl} className="home-history-link">
+            <Link href={entry.lantUrl} className="home-history-link">
               {entry.image && (
                 <img src={entry.image} alt="" className="home-history-img" />
               )}

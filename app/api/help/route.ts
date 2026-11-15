@@ -3,15 +3,15 @@ const API_VERSION = "1.1.0";
 export async function GET() {
   return Response.json(
     {
-      name: "Linked API",
+      name: "lant API",
       version: API_VERSION,
-      description: "Music link unification API. Paste a link from any supported platform, get a universal 'Linked' URL that works everywhere.",
+      description: "Music link unification API. Paste a link from any supported platform, get a universal 'lant' URL that works everywhere.",
       baseUrl: "/api",
       endpoints: [
         {
           method: "POST",
           path: "/api/resolve",
-          description: "Resolve a music URL from any supported platform into a universal Linked URL with cross-platform links.",
+          description: "Resolve a music URL from any supported platform into a universal lant URL with cross-platform links.",
           parameters: [
             { name: "url", in: "body", type: "string", required: true, description: "Music URL from a supported platform." },
           ],
@@ -20,18 +20,18 @@ export async function GET() {
             response: {
               entity: "{ name, artist, image, year, previewUrl, lyrics, links, tracks }",
               source: "{ platform, type, platformId, url }",
-              linkedId: "sp-n5glkt",
-              linkedUrl: "/song/sp-n5glkt",
+              lantId: "sp-n5glkt",
+              lantUrl: "/song/sp-n5glkt",
             },
           },
         },
         {
           method: "GET",
           path: "/api/entity/:type/:id",
-          description: "Resolve a Linked ID back to full metadata with cross-platform links.",
+          description: "Resolve a lant ID back to full metadata with cross-platform links.",
           parameters: [
             { name: "type", in: "path", type: "string", required: true, description: "Entity type: 'song', 'album', 'artist', 'podcast', or 'audiobook'." },
-            { name: "id", in: "path", type: "string", required: true, description: "The Linked ID (e.g. 'sp-n5glkt')." },
+            { name: "id", in: "path", type: "string", required: true, description: "The lant ID (e.g. 'sp-n5glkt')." },
           ],
         },
         {

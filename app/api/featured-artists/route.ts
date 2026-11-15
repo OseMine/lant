@@ -3,13 +3,13 @@ import { getArtistMetadataCached } from "@/lib/songlink";
 
 interface FeaturedArtistResult {
   name: string;
-  linkedUrl: string;
+  lantUrl: string;
   image: string | null;
 }
 
 const FALLBACK_ARTIST = {
   name: "Artist",
-  linkedUrl: "/",
+  lantUrl: "/",
   image: null,
 };
 
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       return {
         name: entity.name,
         image: entity.image,
-        linkedUrl: `/${parsed.entityType}/${parsed.linkedId}`,
+        lantUrl: `/${parsed.entityType}/${parsed.lantId}`,
       };
     }),
   );

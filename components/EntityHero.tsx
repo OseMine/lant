@@ -51,14 +51,14 @@ export default function EntityHero({ data, type }: EntityHeroProps) {
   // Save to history on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const linkedUrl = `/${type}/${generateLinkedIdFromLinks(links)}`;
+      const lantUrl = `/${type}/${generatelantIdFromLinks(links)}`;
       addToHistory({
-        id: linkedUrl,
+        id: lantUrl,
         name,
         artist,
         image,
         type: type as "song" | "album" | "artist",
-        linkedUrl,
+        lantUrl,
       });
     }
   }, [name, artist, image, type, links]);
@@ -85,7 +85,7 @@ export default function EntityHero({ data, type }: EntityHeroProps) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `linked-qr-${name.replace(/\s+/g, "-").toLowerCase()}.svg`;
+    a.download = `lant-qr-${name.replace(/\s+/g, "-").toLowerCase()}.svg`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -251,8 +251,8 @@ export default function EntityHero({ data, type }: EntityHeroProps) {
   );
 }
 
-function generateLinkedIdFromLinks(links: Record<string, string>): string {
-  // Extract linked ID from the first available link
+function generatelantIdFromLinks(links: Record<string, string>): string {
+  // Extract lant ID from the first available link
   for (const [platform, url] of Object.entries(links)) {
     if (url) return `${platform}-${url.split("/").pop()}`;
   }

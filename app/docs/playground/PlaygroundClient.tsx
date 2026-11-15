@@ -9,14 +9,14 @@ const ENDPOINTS = [
     method: "POST",
     path: "/api/resolve",
     title: "Resolve a music URL",
-    desc: "Take any supported music URL and get back a Linked URL with links to every platform.",
+    desc: "Take any supported music URL and get back a lant URL with links to every platform.",
     defaultCode: `import requests
 
 url = "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm"
-r = requests.post("https://linkedapp.ddns.net/api/resolve", json={"url": url})
+r = requests.post("https://lant.lol/api/resolve", json={"url": url})
 data = r.json()
 
-print("Linked URL:", data["linkedUrl"])
+print("lant URL:", data["lantUrl"])
 print("Name:", data["entity"]["name"])
 print("Artist:", data["entity"]["artist"])
 print()
@@ -29,16 +29,16 @@ for platform, link in data["entity"]["links"].items():
     badge: "entity",
     method: "GET",
     path: "/api/entity/{type}/{id}",
-    title: "Resolve a Linked ID",
-    desc: "Look up a Linked ID to get all cross-platform links and full metadata.",
+    title: "Resolve a lant ID",
+    desc: "Look up a lant ID to get all cross-platform links and full metadata.",
     defaultCode: `import requests
 
-# Resolve a Linked ID back to full metadata
+# Resolve a lant ID back to full metadata
 type_id = "song/ssp-1wNgc05aCdwZHRuC9wMixm"
-r = requests.get(f"https://linkedapp.ddns.net/api/entity/{type_id}")
+r = requests.get(f"https://lant.lol/api/entity/{type_id}")
 data = r.json()
 
-print("Linked ID:", data["linkedId"])
+print("lant ID:", data["lantId"])
 print("Name:", data["entity"]["name"])
 print("Artist:", data["entity"]["artist"])
 print()
@@ -59,7 +59,7 @@ params = {
     "url": "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm",
     "maxwidth": 600
 }
-r = requests.get("https://linkedapp.ddns.net/api/oembed", params=params)
+r = requests.get("https://lant.lol/api/oembed", params=params)
 embed = r.json()
 
 print("oEmbed response:")
@@ -84,14 +84,14 @@ params = {
     "type": "track",
     "limit": 5
 }
-r = requests.get("https://linkedapp.ddns.net/api/search", params=params)
+r = requests.get("https://lant.lol/api/search", params=params)
 results = r.json()
 
 print(f"Found {len(results['results'])} result(s)")
 print()
 for track in results["results"]:
     print(f"  {track['title']} — {track['artist']}")
-    print(f"  Linked ID: {track['linkedId']} | Duration: {track['duration']}s")
+    print(f"  lant ID: {track['lantId']} | Duration: {track['duration']}s")
     print()`,
   },
   {
@@ -103,7 +103,7 @@ for track in results["results"]:
     desc: "Get the live health status of the API and all downstream music services.",
     defaultCode: `import requests
 
-r = requests.get("https://linkedapp.ddns.net/api/health")
+r = requests.get("https://lant.lol/api/health")
 health = r.json()
 
 print(f"API Status: {health['status']}")
@@ -286,7 +286,7 @@ sys.stderr = StringIO()
       )}
 
       <div style={{ background: "#161617", border: "1px solid #333", borderRadius: 14, padding: "16px 20px", fontSize: 13, color: "#a1a1a6" }}>
-        <strong style={{ color: "#f5f5f7" }}>How it works:</strong> The playground runs a Python interpreter (Pyodide) entirely in your browser — no server needed. Code is executed client-side and makes real API calls to <code style={{ color: "#a29bfe" }}>linkedapp.ddns.net</code>.
+        <strong style={{ color: "#f5f5f7" }}>How it works:</strong> The playground runs a Python interpreter (Pyodide) entirely in your browser — no server needed. Code is executed client-side and makes real API calls to <code style={{ color: "#a29bfe" }}>lant.lol</code>.
       </div>
     </div>
   );

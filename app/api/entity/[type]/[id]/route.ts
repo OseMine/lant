@@ -1,4 +1,4 @@
-import { decodeLinkedId } from "@/lib/linked-id";
+import { decodelantId } from "@/lib/lant-id";
 import { getMusicDataCached } from "@/lib/songlink";
 import type { NextRequest } from "next/server";
 
@@ -8,9 +8,9 @@ export async function GET(
 ) {
   const { type, id } = await params;
 
-  const decoded = decodeLinkedId(id, type);
+  const decoded = decodelantId(id, type);
   if (!decoded || decoded.type !== type) {
-    return Response.json({ error: "Invalid or unknown linked ID." }, { status: 404, headers: corsHeaders() });
+    return Response.json({ error: "Invalid or unknown lant ID." }, { status: 404, headers: corsHeaders() });
   }
 
   let data;
@@ -32,8 +32,8 @@ export async function GET(
         platformId: decoded.platformId,
         url: buildSourceUrl(decoded.platform, decoded.type, decoded.platformId),
       },
-      linkedId: id,
-      linkedUrl: `/${decoded.type}/${id}`,
+      lantId: id,
+      lantUrl: `/${decoded.type}/${id}`,
     },
     { headers: corsHeaders() }
   );

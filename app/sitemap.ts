@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();

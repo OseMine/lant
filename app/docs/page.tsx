@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export const metadata: Metadata = {
   title: "API Reference",
-  description: "Full API reference for the Linked music link unification service. Resolve music URLs, get cross-platform links, lyrics, previews, and more.",
+  description: "Full API reference for the lant music link unification service. Resolve music URLs, get cross-platform links, lyrics, previews, and more.",
   alternates: {
     canonical: `${BASE_URL}/docs`,
   },
   openGraph: {
-    title: "API Reference — Linked",
-    description: "Full API reference for the Linked music link unification service.",
+    title: "API Reference — lant",
+    description: "Full API reference for the lant music link unification service.",
     url: `${BASE_URL}/docs`,
-    siteName: "Linked",
+    siteName: "lant",
     type: "website",
     images: [
       {
-        url: "/api/og?title=API+Reference&artist=Linked+Documentation",
+        url: "/api/og?title=API+Reference&artist=lant+Documentation",
         width: 1200,
         height: 630,
-        alt: "Linked API Reference",
+        alt: "lant API Reference",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "API Reference — Linked",
-    description: "Full API reference for the Linked music link unification service.",
-    images: ["/api/og?title=API+Reference&artist=Linked+Documentation"],
+    title: "API Reference — lant",
+    description: "Full API reference for the lant music link unification service.",
+    images: ["/api/og?title=API+Reference&artist=lant+Documentation"],
   },
   robots: {
     index: true,
@@ -42,8 +42,8 @@ import { CodeTabs, EndpointList } from "./DocsClient";
 const API_VERSION = "1.1.0";
 
 const ENDPOINTS = [
-  { method: "POST", path: "/api/resolve", desc: "Resolve a music URL into a universal Linked URL with cross-platform links, lyrics, and previews.", params: [{ name: "url", type: "string", required: true, desc: "Music URL from a supported platform", in: "body" }], badge: "resolve" },
-  { method: "GET", path: "/api/entity/:type/:id", desc: "Resolve a Linked ID back to full metadata with cross-platform links.", params: [{ name: "type", type: "string", required: true, desc: "Entity type: song, album, artist, podcast, or audiobook", in: "path" }, { name: "id", type: "string", required: true, desc: "Linked ID (e.g. sp-1wNgc05aCdwZHRuC9wMixm)", in: "path" }], badge: "entity" },
+  { method: "POST", path: "/api/resolve", desc: "Resolve a music URL into a universal lant URL with cross-platform links, lyrics, and previews.", params: [{ name: "url", type: "string", required: true, desc: "Music URL from a supported platform", in: "body" }], badge: "resolve" },
+  { method: "GET", path: "/api/entity/:type/:id", desc: "Resolve a lant ID back to full metadata with cross-platform links.", params: [{ name: "type", type: "string", required: true, desc: "Entity type: song, album, artist, podcast, or audiobook", in: "path" }, { name: "id", type: "string", required: true, desc: "lant ID (e.g. sp-1wNgc05aCdwZHRuC9wMixm)", in: "path" }], badge: "entity" },
   { method: "GET", path: "/api/lyrics", desc: "Fetch lyrics for a track via the keyless Lrclib API.", params: [{ name: "track", type: "string", required: true, desc: "Track name", in: "query" }, { name: "artist", type: "string", required: true, desc: "Artist name", in: "query" }, { name: "album", type: "string", required: false, desc: "Album name (improves match)", in: "query" }, { name: "duration", type: "number", required: false, desc: "Track duration in seconds (improves match)", in: "query" }], badge: "lyrics" },
   { method: "GET", path: "/api/og", desc: "Generate a dynamic 1200x630 Open Graph share image (SVG) for social cards.", params: [{ name: "title", type: "string", required: true, desc: "Entity title", in: "query" }, { name: "artist", type: "string", required: false, desc: "Artist name", in: "query" }, { name: "image", type: "string", required: false, desc: "Cover art URL", in: "query" }, { name: "theme", type: "string", required: false, desc: "'dark' or 'light'", in: "query" }], badge: "og" },
   { method: "GET", path: "/api/oembed", desc: "oEmbed endpoint for rich previews (Twitter, Discord, Slack).", params: [{ name: "url", type: "string", required: true, desc: "Music URL from a supported platform", in: "query" }, { name: "maxwidth", type: "number", required: false, desc: "Max embed width (200-1200, default 600)", in: "query" }, { name: "theme", type: "string", required: false, desc: "'light' or 'dark'", in: "query" }], badge: "oembed" },
@@ -64,7 +64,7 @@ export default function DocsPage() {
           <div style={{ marginBottom: 8, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#6c5ce7" }}>
             API Reference
           </div>
-          <h1 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 8px", letterSpacing: -1, background: "linear-gradient(135deg, #fff 0%, #a1a1a6 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Linked API</h1>
+          <h1 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 8px", letterSpacing: -1, background: "linear-gradient(135deg, #fff 0%, #a1a1a6 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>lant API</h1>
           <div style={{ fontSize: 14, color: "#a1a1a6", marginBottom: 20, lineHeight: 1.5 }}>One link to rule them all.</div>
           <div style={{ fontSize: 11, fontWeight: 600, color: "#a29bfe", background: "rgba(108,92,231,0.15)", padding: "3px 10px", borderRadius: 20, display: "inline-block", marginBottom: 24 }}>v{API_VERSION}</div>
 
@@ -73,7 +73,7 @@ export default function DocsPage() {
               ["#quick-start", "Quick start"],
               ["#endpoints", "Endpoints"],
               ["#platforms", "Platforms"],
-              ["#linked-ids", "Linked IDs"],
+              ["#lant-ids", "lant IDs"],
               ["#entity-types", "Entity types"],
               ["#rate-limit", "Rate limit & CORS"],
               ["#service-health", "Service health"],
@@ -130,9 +130,9 @@ export default function DocsPage() {
             </div>
           </section>
 
-          <section id="linked-ids" style={{ marginBottom: 64 }}>
-            <h2 style={{ fontSize: 24, fontWeight: 700, letterSpacing: -0.3, color: "#f5f5f7", margin: "0 0 24px", paddingBottom: 16, borderBottom: "1px solid #333" }}>Linked IDs</h2>
-            <p style={{ fontSize: 15, color: "#a1a1a6", lineHeight: 1.65, margin: "0 0 16px" }}>Every entity gets a compact, URL-safe Linked ID. Format: <code style={{ fontSize: 14, padding: "2px 6px", background: "#161617", border: "1px solid #333", borderRadius: 6, color: "#a29bfe" }}>{`{type}{platform}-{id}`}</code></p>
+          <section id="lant-ids" style={{ marginBottom: 64 }}>
+            <h2 style={{ fontSize: 24, fontWeight: 700, letterSpacing: -0.3, color: "#f5f5f7", margin: "0 0 24px", paddingBottom: 16, borderBottom: "1px solid #333" }}>lant IDs</h2>
+            <p style={{ fontSize: 15, color: "#a1a1a6", lineHeight: 1.65, margin: "0 0 16px" }}>Every entity gets a compact, URL-safe lant ID. Format: <code style={{ fontSize: 14, padding: "2px 6px", background: "#161617", border: "1px solid #333", borderRadius: 6, color: "#a29bfe" }}>{`{type}{platform}-{id}`}</code></p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 16 }}>
               {[
                 { id: "sp-1wNgc05aCdwZHRuC9wMixm", label: "song · Spotify", idColor: "#6c5ce7", codeColor: "#00b894" },
@@ -225,9 +225,9 @@ export default function DocsPage() {
 
           <footer style={{ padding: "40px 0", borderTop: "1px solid #333", textAlign: "center", color: "#a1a1a6", fontSize: 13 }}>
             <p>
-              Linked API v{API_VERSION} — Built with Next.js.{" "}
+              lant API v{API_VERSION} — Built with Next.js.{" "}
               <a href="/api/health" style={{ color: "#a1a1a6", textDecoration: "none", fontWeight: 500 }}>Health check</a> ·{" "}
-              <a href="https://github.com/OseMine/linked" style={{ color: "#a1a1a6", textDecoration: "none", fontWeight: 500 }}>GitHub</a>
+              <a href="https://github.com/OseMine/lant" style={{ color: "#a1a1a6", textDecoration: "none", fontWeight: 500 }}>GitHub</a>
             </p>
           </footer>
         </main>

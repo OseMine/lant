@@ -14,11 +14,11 @@ function isMusicUrl(url) {
 }
 
 function showBanner() {
-  const existing = document.getElementById("linked-banner");
+  const existing = document.getElementById("lant-banner");
   if (existing) return;
 
   const banner = document.createElement("div");
-  banner.id = "linked-banner";
+  banner.id = "lant-banner";
   banner.innerHTML = `
     <div style="
       position: fixed;
@@ -36,18 +36,18 @@ function showBanner() {
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       cursor: pointer;
       transition: all 0.2s ease;
-    " id="linked-banner-inner">
+    " id="lant-banner-inner">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6c5ce7" stroke-width="2">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
       </svg>
-      <span style="color: #fff; font-size: 14px; font-weight: 500;">Open in Linked</span>
+      <span style="color: #fff; font-size: 14px; font-weight: 500;">Open in lant</span>
     </div>
   `;
 
   document.body.appendChild(banner);
 
-  const inner = document.getElementById("linked-banner-inner");
+  const inner = document.getElementById("lant-banner-inner");
   inner.addEventListener("mouseenter", () => {
     inner.style.background = "#2a2a3e";
     inner.style.borderColor = "#6c5ce7";
@@ -61,8 +61,8 @@ function showBanner() {
     chrome.runtime.sendMessage(
       { type: "RESOLVE_URL", url: window.location.href },
       (response) => {
-        if (response?.linkedUrl) {
-          window.location.href = response.linkedUrl;
+        if (response?.lantUrl) {
+          window.location.href = response.lantUrl;
         }
       }
     );

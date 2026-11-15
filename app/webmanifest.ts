@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Linked",
-    short_name: "Linked",
+    name: "lant",
+    short_name: "lant",
     description: "One link to rule them all - Share music across any platform",
     start_url: "/",
     display: "standalone",

@@ -2,33 +2,33 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeExampleTabsClient } from "./CodeExampleTabsClient";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export const metadata: Metadata = {
   title: "API Examples",
-  description: "Working code examples for every Linked API endpoint. Copy and run in cURL, JavaScript, or Python.",
+  description: "Working code examples for every lant API endpoint. Copy and run in cURL, JavaScript, or Python.",
   alternates: {
     canonical: `${BASE_URL}/docs/examples`,
   },
   openGraph: {
-    title: "API Examples — Linked",
-    description: "Working code examples for every Linked API endpoint. Copy and run in cURL, JavaScript, or Python.",
+    title: "API Examples — lant",
+    description: "Working code examples for every lant API endpoint. Copy and run in cURL, JavaScript, or Python.",
     url: `${BASE_URL}/docs/examples`,
-    siteName: "Linked",
+    siteName: "lant",
     type: "website",
     images: [
       {
         url: "/api/og?title=API+Examples&artist=Code+Samples",
         width: 1200,
         height: 630,
-        alt: "Linked API Examples",
+        alt: "lant API Examples",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "API Examples — Linked",
-    description: "Working code examples for every Linked API endpoint. Copy and run in cURL, JavaScript, or Python.",
+    title: "API Examples — lant",
+    description: "Working code examples for every lant API endpoint. Copy and run in cURL, JavaScript, or Python.",
     images: ["/api/og?title=API+Examples&artist=Code+Samples"],
   },
   robots: {
@@ -44,11 +44,11 @@ const EXAMPLES = [
     method: "POST",
     path: "/api/resolve",
     title: "Resolve a music URL",
-    desc: "Take any supported music URL and get back a Linked URL with links to every platform.",
+    desc: "Take any supported music URL and get back a lant URL with links to every platform.",
     request: {
       url: "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm",
     },
-    curl: `curl -X POST https://linkedapp.ddns.net/api/resolve \\
+    curl: `curl -X POST https://lant.lol/api/resolve \\
   -H "Content-Type: application/json" \\
   -d '{"url": "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm"}'`,
     js: `const res = await fetch('/api/resolve', {
@@ -59,16 +59,16 @@ const EXAMPLES = [
   })
 });
 const data = await res.json();
-console.log(data.linkedUrl); // https://linkedapp.ddns.net/s/sp-1wNgc05aCdwZHRuC9wMixm`,
+console.log(data.lantUrl); // https://lant.lol/s/sp-1wNgc05aCdwZHRuC9wMixm`,
     py: `import requests
-r = requests.post('https://linkedapp.ddns.net/api/resolve', json={
+r = requests.post('https://lant.lol/api/resolve', json={
     'url': 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm'
 })
 data = r.json()
-print(data['linkedUrl'])`,
+print(data['lantUrl'])`,
     response: `{
-  "linkedUrl": "/song/ssp-1wNgc05aCdwZHRuC9wMixm",
-  "linkedId": "ssp-1wNgc05aCdwZHRuC9wMixm",
+  "lantUrl": "/song/ssp-1wNgc05aCdwZHRuC9wMixm",
+  "lantId": "ssp-1wNgc05aCdwZHRuC9wMixm",
   "entity": {
     "name": "The Less I Know The Better",
     "artist": "Tame Impala",
@@ -96,18 +96,18 @@ print(data['linkedUrl'])`,
     badge: "entity",
     method: "GET",
     path: "/api/entity/{type}/{id}",
-    title: "Resolve a Linked ID",
-    desc: "Look up a Linked ID to get all cross-platform links and full metadata.",
+    title: "Resolve a lant ID",
+    desc: "Look up a lant ID to get all cross-platform links and full metadata.",
     request: {
       type: "song",
       id: "sp-1wNgc05aCdwZHRuC9wMixm",
     },
-    curl: `curl https://linkedapp.ddns.net/api/entity/song/sp-1wNgc05aCdwZHRuC9wMixm`,
+    curl: `curl https://lant.lol/api/entity/song/sp-1wNgc05aCdwZHRuC9wMixm`,
     js: `const res = await fetch('/api/entity/song/sp-1wNgc05aCdwZHRuC9wMixm');
 const entity = await res.json();
 console.log(entity.title, '—', entity.artist);`,
     py: `import requests
-r = requests.get('https://linkedapp.ddns.net/api/entity/song/sp-1wNgc05aCdwZHRuC9wMixm')
+r = requests.get('https://lant.lol/api/entity/song/sp-1wNgc05aCdwZHRuC9wMixm')
 entity = r.json()
 print(f"{entity['title']} — {entity['artist']}")`,
     response: `{
@@ -141,7 +141,7 @@ print(f"{entity['title']} — {entity['artist']}")`,
       url: "https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm",
       maxwidth: 600,
     },
-    curl: `curl "https://linkedapp.ddns.net/api/oembed?url=https%3A//open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm&maxwidth=600"`,
+    curl: `curl "https://lant.lol/api/oembed?url=https%3A//open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm&maxwidth=600"`,
     js: `const url = encodeURIComponent('https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm');
 const res = await fetch(\`/api/oembed?url=\${url}&maxwidth=600\`);
 const embed = await res.json();
@@ -151,16 +151,16 @@ params = {
     'url': 'https://open.spotify.com/track/1wNgc05aCdwZHRuC9wMixm',
     'maxwidth': 600
 }
-r = requests.get('https://linkedapp.ddns.net/api/oembed', params=params)
+r = requests.get('https://lant.lol/api/oembed', params=params)
 embed = r.json()
 print(embed['html'][:100], '...')`,
     response: `{
   "type": "rich",
   "version": "1.0",
   "title": "The Less I Know The Better — Tame Impala",
-  "author_name": "Linked",
-  "provider_name": "Linked",
-  "provider_url": "https://linkedapp.ddns.net",
+  "author_name": "lant",
+  "provider_name": "lant",
+  "provider_url": "https://lant.lol",
   "html": "<iframe ...></iframe>",
   "width": 600,
   "height": 200
@@ -178,7 +178,7 @@ print(embed['html'][:100], '...')`,
       type: "track",
       limit: 5,
     },
-    curl: `curl "https://linkedapp.ddns.net/api/search?q=blinding%20lights&type=track&limit=5"`,
+    curl: `curl "https://lant.lol/api/search?q=blinding%20lights&type=track&limit=5"`,
     js: `const res = await fetch('/api/search?q=blinding%20lights&type=track&limit=5');
 const results = await res.json();
 results.data.forEach(track => {
@@ -186,7 +186,7 @@ results.data.forEach(track => {
 });`,
     py: `import requests
 params = {'q': 'blinding lights', 'type': 'track', 'limit': 5}
-r = requests.get('https://linkedapp.ddns.net/api/search', params=params)
+r = requests.get('https://lant.lol/api/search', params=params)
 results = r.json()
 for track in results['data']:
     print(f"{track['title']} — {track['artist']['name']}")`,
@@ -216,7 +216,7 @@ for track in results['data']:
       artist: "Tame Impala",
       album: "Currents",
     },
-    curl: `curl "https://linkedapp.ddns.net/api/lyrics?track=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala&album=Currents"`,
+    curl: `curl "https://lant.lol/api/lyrics?track=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala&album=Currents"`,
     js: `const res = await fetch(
   '/api/lyrics?track=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala&album=Currents'
 );
@@ -228,7 +228,7 @@ params = {
     'artist': 'Tame Impala',
     'album': 'Currents'
 }
-r = requests.get('https://linkedapp.ddns.net/api/lyrics', params=params)
+r = requests.get('https://lant.lol/api/lyrics', params=params)
 lyrics = r.json()
 print(lyrics['plainLyrics'])`,
     response: `{
@@ -250,7 +250,7 @@ print(lyrics['plainLyrics'])`,
       artist: "Tame Impala",
       theme: "dark",
     },
-    curl: `curl -o card.svg "https://linkedapp.ddns.net/api/og?title=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala&theme=dark"`,
+    curl: `curl -o card.svg "https://lant.lol/api/og?title=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala&theme=dark"`,
     js: `// Use directly as an image URL in Open Graph meta tags
 const ogImage = '/api/og?title=The%20Less%20I%20Know%20The%20Better&artist=Tame%20Impala';
 
@@ -261,7 +261,7 @@ params = {
     'artist': 'Tame Impala',
     'theme': 'dark'
 }
-r = requests.get('https://linkedapp.ddns.net/api/og', params=params)
+r = requests.get('https://lant.lol/api/og', params=params)
 with open('card.svg', 'wb') as f:
     f.write(r.content)`,
     response: `<!-- SVG response with Content-Type: image/svg+xml -->
@@ -274,7 +274,7 @@ with open('card.svg', 'wb') as f:
   <image x="80" y="140" width="300" height="300" rx="24" .../>
   <text x="440" y="220" font-size="48" font-weight="700">The Less I Know...</text>
   <rect x="440" y="340" width="200" height="50" rx="25" fill="url(#accent)"/>
-  <text x="540" y="372" font-size="20">Open in Linked</text>
+  <text x="540" y="372" font-size="20">Open in lant</text>
 </svg>`,
   },
   {
@@ -285,13 +285,13 @@ with open('card.svg', 'wb') as f:
     title: "Check service health",
     desc: "Get the live health status of the API and all downstream music services.",
     request: {},
-    curl: `curl https://linkedapp.ddns.net/api/health`,
+    curl: `curl https://lant.lol/api/health`,
     js: `const res = await fetch('/api/health');
 const health = await res.json();
 const status = health.status; // 'operational' | 'degraded' | 'down'
 console.log(\`API is \${status}\`);`,
     py: `import requests
-r = requests.get('https://linkedapp.ddns.net/api/health')
+r = requests.get('https://lant.lol/api/health')
 health = r.json()
 print(f"API is {health['status']}")`,
     response: `{

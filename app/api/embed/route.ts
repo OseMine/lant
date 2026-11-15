@@ -1,4 +1,4 @@
-import { decodeLinkedId } from "@/lib/linked-id";
+import { decodelantId } from "@/lib/lant-id";
 import { getMusicDataCached } from "@/lib/songlink";
 import type { NextRequest } from "next/server";
 
@@ -10,10 +10,10 @@ export async function GET(request: NextRequest) {
   if (!type || !id) {
     return new Response(
       buildEmbedHtml({
-        title: "Linked",
+        title: "lant",
         artist: "",
         image: "",
-        linkedUrl: "/",
+        lantUrl: "/",
         theme: "dark",
         entityType: "song",
       }),
@@ -21,9 +21,9 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const decoded = decodeLinkedId(id, type || undefined);
+  const decoded = decodelantId(id, type || undefined);
   if (!decoded || decoded.type !== type) {
-    return new Response("Invalid linked ID", { status: 404 });
+    return new Response("Invalid lant ID", { status: 404 });
   }
 
   let data;
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     title: data.name,
     artist: data.artist || "",
     image: data.image || "",
-    linkedUrl: `/${decoded.type}/${id}`,
+    lantUrl: `/${decoded.type}/${id}`,
     theme: "dark",
     entityType: decoded.type,
     previewUrl: data.previewUrl,
@@ -57,7 +57,7 @@ interface EmbedOpts {
   title: string;
   artist: string;
   image: string;
-  linkedUrl: string;
+  lantUrl: string;
   theme: string;
   entityType: string;
   previewUrl?: string | null;
@@ -65,7 +65,7 @@ interface EmbedOpts {
 }
 
 function buildEmbedHtml(opts: EmbedOpts): string {
-  const { title, artist, image, linkedUrl, entityType, previewUrl, tracks } = opts;
+  const { title, artist, image, lantUrl, entityType, previewUrl, tracks } = opts;
   const bg = "#0a0a0a";
   const fg = "#ffffff";
   const sub = "#a1a1a6";
@@ -97,7 +97,7 @@ function buildEmbedHtml(opts: EmbedOpts): string {
   <div style="flex:1;min-width:0;">
     <div style="font-size:15px;font-weight:600;color:${fg};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(title)}</div>
     <div style="font-size:12px;color:${sub};margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(artist)}</div>
-    <a href="${esc(linkedUrl)}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:6px 16px;background:${accent};color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:500;">Open in Linked</a>
+    <a href="${esc(lantUrl)}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:6px 16px;background:${accent};color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:500;">Open in lant</a>
   </div>
 </div>
 ${tracklistHtml}

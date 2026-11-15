@@ -13,7 +13,7 @@ interface SearchResult {
   platform: string;
   type: "song" | "album" | "artist";
   platformId: string;
-  linkedId: string;
+  lantId: string;
   duration: number | null;
   image: string | null;
 }
@@ -26,7 +26,7 @@ interface ResolveResponse {
     links: Record<string, string>;
   };
   source: { platform: string; type: string; url: string };
-  linkedUrl: string;
+  lantUrl: string;
 }
 
 const FEATURED_ARTISTS = [
@@ -48,7 +48,7 @@ const FEATURED_ARTISTS = [
 
 interface FeaturedArtist {
   name: string;
-  linkedUrl: string;
+  lantUrl: string;
   image: string | null;
 }
 
@@ -274,7 +274,7 @@ export default function Home() {
   }
 
   function handleSuggestionClick(result: SearchResult) {
-    router.push(`/${result.type}/${result.linkedId}`);
+    router.push(`/${result.type}/${result.lantId}`);
   }
 
   function handleSearchSubmit(e: React.FormEvent) {
@@ -286,7 +286,7 @@ export default function Home() {
 
   async function copyLink() {
     if (!result) return;
-    await navigator.clipboard.writeText(window.location.origin + result.linkedUrl);
+    await navigator.clipboard.writeText(window.location.origin + result.lantUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -378,14 +378,14 @@ export default function Home() {
             <div className="home-result-url">
               <input
                 type="text"
-                value={window.location.origin + result.linkedUrl}
+                value={window.location.origin + result.lantUrl}
                 readOnly
               />
               <button onClick={copyLink} type="button">
                 {copied ? t("home.result.copied") : t("home.result.copy")}
               </button>
             </div>
-            <a href={result.linkedUrl} className="home-result-view">
+            <a href={result.lantUrl} className="home-result-view">
               {t("home.result.view")} &rarr;
             </a>
           </div>
@@ -403,11 +403,11 @@ export default function Home() {
         <div className="home-showcase-grid">
           {featuredArtists.map((a, index) => (
                 <div
-              key={`${a.linkedUrl}-${index}`}
+              key={`${a.lantUrl}-${index}`}
               ref={(el) => { artistCardRefs.current[index] = el; }}
               className="home-artist-card-wrapper"
             >
-              <Link href={a.linkedUrl} className="home-artist-card">
+              <Link href={a.lantUrl} className="home-artist-card">
                 {a.image && <img src={a.image} alt={a.name} className="home-artist-img" />}
                 <div className="home-artist-overlay" />
                 <span className="home-artist-name">{a.name}</span>

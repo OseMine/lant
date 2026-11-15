@@ -1,4 +1,4 @@
-import { linkedId } from "@/lib/linked-id";
+import { lantId } from "@/lib/lant-id";
 import { checkRateLimit, getRateLimitHeaders } from "@/lib/rate-limit";
 import type { NextRequest } from "next/server";
 
@@ -8,7 +8,7 @@ interface SearchResult {
   platform: string;
   type: "song" | "album" | "artist";
   platformId: string;
-  linkedId: string;
+  lantId: string;
   duration: number | null;
   image: string | null;
 }
@@ -108,7 +108,7 @@ async function searchDeezer(
           platform: "deezer",
           type: "song" as const,
           platformId: String(track.id),
-          linkedId: linkedId("deezer", "song", String(track.id)),
+          lantId: lantId("deezer", "song", String(track.id)),
           duration: track.duration || null,
           image: track.album?.cover_medium || null,
         };
@@ -120,7 +120,7 @@ async function searchDeezer(
           platform: "deezer",
           type: "album" as const,
           platformId: String(album.id),
-          linkedId: linkedId("deezer", "album", String(album.id)),
+          lantId: lantId("deezer", "album", String(album.id)),
           duration: null,
           image: album.cover_medium || null,
         };
@@ -132,7 +132,7 @@ async function searchDeezer(
           platform: "deezer",
           type: "artist" as const,
           platformId: String(artist.id),
-          linkedId: linkedId("deezer", "artist", String(artist.id)),
+          lantId: lantId("deezer", "artist", String(artist.id)),
           duration: null,
           image: artist.picture_medium || null,
         };
@@ -169,7 +169,7 @@ async function searchSpotify(
         platform: "spotify",
         type: "song" as const,
         platformId: item.id,
-        linkedId: linkedId("spotify", "song", item.id),
+        lantId: lantId("spotify", "song", item.id),
         duration: item.duration_ms ? Math.floor(item.duration_ms / 1000) : null,
         image: item.album?.images?.[2]?.url || item.album?.images?.[0]?.url || null,
       }));
@@ -180,7 +180,7 @@ async function searchSpotify(
         platform: "spotify",
         type: "album" as const,
         platformId: item.id,
-        linkedId: linkedId("spotify", "album", item.id),
+        lantId: lantId("spotify", "album", item.id),
         duration: null,
         image: item.images?.[2]?.url || item.images?.[0]?.url || null,
       }));
@@ -191,7 +191,7 @@ async function searchSpotify(
         platform: "spotify",
         type: "artist" as const,
         platformId: item.id,
-        linkedId: linkedId("spotify", "artist", item.id),
+        lantId: lantId("spotify", "artist", item.id),
         duration: null,
         image: item.images?.[2]?.url || item.images?.[0]?.url || null,
       }));
@@ -225,7 +225,7 @@ async function searchItunes(
       platform: "apple",
       type: type === "track" ? "song" : type === "album" ? "album" : "artist",
       platformId: String(item.trackId || item.collectionId || item.artistId),
-      linkedId: linkedId(
+      lantId: lantId(
         "apple",
         type === "track" ? "song" : type === "album" ? "album" : "artist",
         String(item.trackId || item.collectionId || item.artistId)

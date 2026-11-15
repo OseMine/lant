@@ -15,7 +15,7 @@ function detectLocale(): Locale {
 
 const translations: Record<Locale, Record<string, string>> = {
   en: {
-    "home.title": "Linked",
+    "home.title": "lant",
     "home.tagline": "One link to rule them all",
     "home.search.placeholder": "Paste a link or search...",
     "home.search.resolving": "Resolving link...",
@@ -23,7 +23,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "home.result.copied": "Copied!",
     "home.result.view": "View page",
     "home.showcase.label": "See it in action",
-    "home.showcase.title": "Try a linked page",
+    "home.showcase.title": "Try a lant page",
     "home.showcase.desc": "Every link resolves to a universal page with options to open on any supported platform.",
     "home.steps.title": "How it works",
     "home.steps.1.title": "Copy a link",
@@ -77,7 +77,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "unsupported.region": "This content is not available in your region.",
   },
   es: {
-    "home.title": "Linked",
+    "home.title": "lant",
     "home.tagline": "Un enlace para cada plataforma de música",
     "home.search.placeholder": "Pega un enlace o busca...",
     "home.search.resolving": "Resolviendo enlace...",
@@ -85,7 +85,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "home.result.copied": "¡Copiado!",
     "home.result.view": "Ver página",
     "home.showcase.label": "Míralo en acción",
-    "home.showcase.title": "Prueba una página linked",
+    "home.showcase.title": "Prueba una página lant",
     "home.showcase.desc": "Cada enlace resuelve a una página universal con opciones para abrir en cualquier plataforma compatible.",
     "home.steps.title": "Cómo funciona",
     "home.steps.1.title": "Copia un enlace",
@@ -139,7 +139,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "unsupported.region": "Este contenido no está disponible en tu región.",
   },
   ja: {
-    "home.title": "Linked",
+    "home.title": "lant",
     "home.tagline": "すべての音楽プラットフォームのための1つのリンク",
     "home.search.placeholder": "リンクを貼り付けるか検索...",
     "home.search.resolving": "リンクを解決中...",
@@ -147,7 +147,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "home.result.copied": "コピーしました！",
     "home.result.view": "ページを見る",
     "home.showcase.label": "実際にお試し",
-    "home.showcase.title": "Linkedページを試す",
+    "home.showcase.title": "lantページを試す",
     "home.showcase.desc": "すべてのリンクは、サポートされているすべてのプラットフォームで開くオプション付きのユニバーサルページに解決されます。",
     "home.steps.title": "使い方",
     "home.steps.1.title": "リンクをコピー",

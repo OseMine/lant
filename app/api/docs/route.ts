@@ -22,16 +22,16 @@ interface EndpointDef {
 export async function GET() {
   return Response.json(
     {
-      name: "Linked API",
+      name: "lant API",
       version: API_VERSION,
       description:
-        "Music link unification API. Paste a link from any supported platform, get a universal 'Linked' URL with cross-platform links, lyrics, previews, and embeddable share assets.",
+        "Music link unification API. Paste a link from any supported platform, get a universal 'lant' URL with cross-platform links, lyrics, previews, and embeddable share assets.",
       baseUrl: "/api",
       endpoints: [
         {
           method: "POST",
           path: "/api/resolve",
-          description: "Resolve a music URL from any supported platform into a universal Linked URL with cross-platform links.",
+          description: "Resolve a music URL from any supported platform into a universal lant URL with cross-platform links.",
           parameters: [
             { name: "url", in: "body", type: "string", required: true, description: "Music URL from a supported platform." },
           ],
@@ -40,18 +40,18 @@ export async function GET() {
             response: {
               entity: "{ name, artist, image, year, previewUrl, lyrics, links, tracks }",
               source: "{ platform, type, platformId, url }",
-              linkedId: "sp-1wNgc05aCdwZHRuC9wMixm",
-              linkedUrl: "/song/sp-1wNgc05aCdwZHRuC9wMixm",
+              lantId: "sp-1wNgc05aCdwZHRuC9wMixm",
+              lantUrl: "/song/sp-1wNgc05aCdwZHRuC9wMixm",
             },
           },
         },
         {
           method: "GET",
           path: "/api/entity/:type/:id",
-          description: "Resolve a Linked ID back to full metadata with cross-platform links, lyrics, and previews.",
+          description: "Resolve a lant ID back to full metadata with cross-platform links, lyrics, and previews.",
           parameters: [
             { name: "type", in: "path", type: "string", required: true, description: "Entity type: 'song', 'album', or 'artist'." },
-            { name: "id", in: "path", type: "string", required: true, description: "The Linked ID (e.g. 'sp-1wNgc05aCdwZHRuC9wMixm')." },
+            { name: "id", in: "path", type: "string", required: true, description: "The lant ID (e.g. 'sp-1wNgc05aCdwZHRuC9wMixm')." },
           ],
         },
         {
@@ -113,7 +113,7 @@ export async function GET() {
         {
           method: "GET",
           path: "/api/docs",
-          description: "Full API reference with platform support, entity types, linked IDs, and endpoint definitions.",
+          description: "Full API reference with platform support, entity types, lant IDs, and endpoint definitions.",
           parameters: [],
         },
       ],

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const BASE_URL = "https://linkedapp.ddns.net";
+const BASE_URL = "https://lant.lol";
 
 const MUSIC_PATTERNS = [
   { platform: "Spotify", pattern: /open\.spotify\.com\/(track|artist|album)\// },
@@ -21,18 +21,18 @@ function detectPlatform(url) {
 
 function printHelp() {
   console.log(`
-  \x1b[35mLinked CLI\x1b[0m - Music Link Unifier
+  \x1b[35mlant CLI\x1b[0m - Music Link Unifier
 
   Usage:
-    linked resolve <url>     Resolve a music URL to a universal Linked URL
-    linked detect <url>      Detect the platform of a music URL
-    linked open <url>        Resolve and open in browser
-    linked help              Show this help message
+    lant resolve <url>     Resolve a music URL to a universal lant URL
+    lant detect <url>      Detect the platform of a music URL
+    lant open <url>        Resolve and open in browser
+    lant help              Show this help message
 
   Examples:
-    linked resolve https://open.spotify.com/track/4cOdK2wGEL8SetjwfNnPKc
-    linked detect https://music.apple.com/us/album/bohemian-rhapsody/1440806041
-    linked open https://tidal.com/browse/track/12345678
+    lant resolve https://open.spotify.com/track/4cOdK2wGEL8SetjwfNnPKc
+    lant detect https://music.apple.com/us/album/bohemian-rhapsody/1440806041
+    lant open https://tidal.com/browse/track/12345678
 
   Supported platforms:
     Spotify, Apple Music, Deezer, Tidal, YouTube, Amazon Music, Bandcamp
@@ -65,14 +65,14 @@ async function resolveUrl(url) {
     }
 
     const entity = data.entity;
-    const linkedUrl = `${BASE_URL}${data.linkedUrl}`;
+    const lantUrl = `${BASE_URL}${data.lantUrl}`;
 
     console.log("");
     console.log(`  \x1b[1m${entity.name}\x1b[0m`);
     if (entity.artist) console.log(`  \x1b[90mby ${entity.artist}\x1b[0m`);
     if (entity.year) console.log(`  \x1b[90m${entity.year}\x1b[0m`);
     console.log("");
-    console.log(`  \x1b[35mLinked URL:\x1b[0m ${linkedUrl}`);
+    console.log(`  \x1b[35mlant URL:\x1b[0m ${lantUrl}`);
     console.log("");
 
     if (Object.keys(entity.links).length > 0) {
@@ -83,7 +83,7 @@ async function resolveUrl(url) {
       }
     }
 
-    return { linkedUrl, entity };
+    return { lantUrl, entity };
   } catch (error) {
     console.error(`\x1b[31mError:\x1b[0m Failed to resolve. ${error.message}`);
     process.exit(1);
@@ -101,15 +101,15 @@ async function detectUrl(url) {
 }
 
 async function openUrl(url) {
-  const { linkedUrl } = await resolveUrl(url);
+  const { lantUrl } = await resolveUrl(url);
   const { exec } = await import("child_process");
   const platform = process.platform;
   const cmd =
     platform === "darwin"
-      ? `open "${linkedUrl}"`
+      ? `open "${lantUrl}"`
       : platform === "win32"
-        ? `start "${linkedUrl}"`
-        : `xdg-open "${linkedUrl}"`;
+        ? `start "${lantUrl}"`
+        : `xdg-open "${lantUrl}"`;
   exec(cmd);
 }
 
@@ -123,7 +123,7 @@ switch (command) {
   case "r":
     if (!url) {
       console.error(`\x1b[31mError:\x1b[0m Please provide a URL.`);
-      console.error(`Usage: linked resolve <url>`);
+      console.error(`Usage: lant resolve <url>`);
       process.exit(1);
     }
     resolveUrl(url);

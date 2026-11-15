@@ -29,8 +29,8 @@ export async function GET(request: NextRequest) {
   <text x="440" y="220" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="48" font-weight="700" fill="${fg}">${escapeXmlText(title.length > 30 ? title.slice(0, 27) + '...' : title)}</text>
   ${artist ? `<text x="440" y="280" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="28" fill="${sub}">${escapeXmlText(artist.length > 40 ? artist.slice(0, 37) + '...' : artist)}</text>` : ''}
   <rect x="440" y="340" width="200" height="50" rx="25" fill="url(#accent)"/>
-  <text x="540" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">Open in Linked</text>
-  <text x="600" y="580" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="16" fill="${sub}" text-anchor="middle">linkedapp.ddns.net</text>
+  <text x="540" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="20" font-weight="600" fill="#ffffff" text-anchor="middle">Open in lant</text>
+  <text x="600" y="580" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif" font-size="16" fill="${sub}" text-anchor="middle">lant.lol</text>
 </svg>`;
 
   return new Response(svg, {

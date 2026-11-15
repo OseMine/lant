@@ -1,4 +1,4 @@
-const BASE_URL = "https://linkedapp.ddns.net";
+const BASE_URL = "https://lant.lol";
 const content = document.getElementById("content");
 
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -17,7 +17,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       }
 
       content.innerHTML = `
-        <button class="btn" id="resolve-btn">Open in Linked</button>
+        <button class="btn" id="resolve-btn">Open in lant</button>
         <div class="status" id="status"></div>
       `;
 
@@ -31,10 +31,10 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.runtime.sendMessage(
           { type: "RESOLVE_URL", url: tab.url },
           (res) => {
-            if (res?.linkedUrl) {
+            if (res?.lantUrl) {
               status.textContent = "Redirecting...";
               status.className = "status success";
-              chrome.tabs.update(tab.id, { url: res.linkedUrl });
+              chrome.tabs.update(tab.id, { url: res.lantUrl });
               setTimeout(() => window.close(), 500);
             } else {
               status.textContent = "Failed to resolve. Try again.";

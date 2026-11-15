@@ -31,13 +31,13 @@ function PreconnectLinks() {
   );
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://linkedapp.ddns.net";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Linked - Share Music with Anyone",
-    template: "%s | Linked",
+    default: "lant - Share Music with Anyone",
+    template: "%s | lant",
   },
   description: "Share your favorite music across any platform. One universal link that opens in Spotify, Apple Music, Deezer, Tidal, YouTube, and more. Works with lyrics, previews, and QR codes.",
   keywords: [
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
     "music discovery",
   ],
   authors: [{ name: "OseMine" }],
-  creator: "Linked",
-  publisher: "Linked",
+  creator: "lant",
+  publisher: "lant",
   robots: {
     index: true,
     follow: true,
@@ -68,24 +68,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "Linked",
-    title: "Linked - Share Music with Anyone",
+    siteName: "lant",
+    title: "lant - Share Music with Anyone",
     description: "One universal link for all music platforms. Share songs, albums, and artists across Spotify, Apple Music, Deezer, Tidal, YouTube, and more.",
     images: [
       {
-        url: "/api/og?title=Linked&artist=Share Music Anywhere",
+        url: "/api/og?title=lant&artist=Share Music Anywhere",
         width: 1200,
         height: 630,
-        alt: "Linked - Universal Music Links",
+        alt: "lant - Universal Music Links",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Linked - Share Music with Anyone",
+    title: "lant - Share Music with Anyone",
     description: "One universal link for all music platforms. Share songs, albums, and artists across Spotify, Apple Music, Deezer, Tidal, YouTube, and more.",
-    images: ["/api/og?title=Linked&artist=Share Music Anywhere"],
-    creator: "@LinkedApp",
+    images: ["/api/og?title=lant&artist=Share Music Anywhere"],
+    creator: "@lantApp",
   },
   icons: {
     icon: "/favicon.ico",
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Linked",
+    title: "lant",
   },
   alternates: {
     canonical: BASE_URL,
@@ -124,7 +124,7 @@ function StructuredData() {
         "@type": "WebSite",
         "@id": `${BASE_URL}/#website`,
         url: BASE_URL,
-        name: "Linked",
+        name: "lant",
         description: "Share your favorite music across any platform. One universal link that opens in Spotify, Apple Music, Deezer, Tidal, YouTube, and more.",
         publisher: {
           "@id": `${BASE_URL}/#organization`,
@@ -141,7 +141,7 @@ function StructuredData() {
       {
         "@type": "Organization",
         "@id": `${BASE_URL}/#organization`,
-        name: "Linked",
+        name: "lant",
         url: BASE_URL,
         logo: {
           "@type": "ImageObject",
@@ -150,14 +150,14 @@ function StructuredData() {
           height: 512,
         },
         sameAs: [
-          "https://github.com/OseMine/linked",
+          "https://github.com/OseMine/lant",
         ],
         description: "Music link unification service - one universal link for all music platforms.",
       },
       {
         "@type": "SoftwareApplication",
         "@id": `${BASE_URL}/#application`,
-        name: "Linked",
+        name: "lant",
         applicationCategory: "MusicApplication",
         operatingSystem: "Web",
         offers: {
@@ -214,7 +214,7 @@ export default function RootLayout({
           }}
         />
         <I18nProvider>
-          <Link href="https://github.com/OseMine/linked" aria-label="GitHub repository" className="github-link">
+          <Link href="https://github.com/OseMine/lant" aria-label="GitHub repository" className="github-link">
             <FaGithub size={20} />
           </Link>
           {children}

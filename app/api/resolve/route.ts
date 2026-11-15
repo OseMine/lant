@@ -1,5 +1,5 @@
 import { parseUrl } from "@/lib/parsers";
-import { linkedId } from "@/lib/linked-id";
+import { lantId } from "@/lib/lant-id";
 import { getMusicDataCached } from "@/lib/songlink";
 import { checkRateLimit, getRateLimitHeaders } from "@/lib/rate-limit";
 import type { NextRequest } from "next/server";
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const id = linkedId(parsed.platform, parsed.entityType, parsed.platformId);
+  const id = lantId(parsed.platform, parsed.entityType, parsed.platformId);
 
   let data;
   try {
@@ -65,8 +65,8 @@ export async function POST(request: NextRequest) {
         platformId: parsed.platformId,
         url: parsed.url,
       },
-      linkedId: id,
-      linkedUrl: `/${parsed.entityType}/${id}`,
+      lantId: id,
+      lantUrl: `/${parsed.entityType}/${id}`,
     },
     { headers: { ...corsHeaders(), ...rateLimitHeaders } }
   );

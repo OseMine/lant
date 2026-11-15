@@ -1,4 +1,4 @@
-import { linkedId } from "@/lib/linked-id";
+import { lantId } from "@/lib/lant-id";
 
 export type EntityType = "artist" | "song" | "album" | "podcast" | "audiobook";
 
@@ -7,7 +7,7 @@ export interface ParsedEntity {
   entityType: EntityType;
   platformId: string;
   url: string;
-  linkedId: string;
+  lantId: string;
 }
 
 export function parseUrl(url: string): ParsedEntity | null {
@@ -30,7 +30,7 @@ export function parseUrl(url: string): ParsedEntity | null {
     if (result) {
       return {
         ...result,
-        linkedId: linkedId(result.platform, result.entityType, result.platformId),
+        lantId: lantId(result.platform, result.entityType, result.platformId),
       };
     }
   }
@@ -38,7 +38,7 @@ export function parseUrl(url: string): ParsedEntity | null {
   return null;
 }
 
-function parseSpotify(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseSpotify(url: string): Omit<ParsedEntity, "lantId"> | null {
   const match = url.match(/open\.spotify\.com\/(?:intl-[a-z]{2}\/)?(track|artist|album)\/([a-zA-Z0-9]+)/);
   if (!match) return null;
 
@@ -52,7 +52,7 @@ function parseSpotify(url: string): Omit<ParsedEntity, "linkedId"> | null {
   };
 }
 
-function parseAppleMusic(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseAppleMusic(url: string): Omit<ParsedEntity, "lantId"> | null {
   const trackMatch = url.match(/music\.apple\.com\/[a-z]{2}\/album\/[^/]+\/id(\d+)\?i=(\d+)/i);
   if (trackMatch) {
     return {
@@ -86,7 +86,7 @@ function parseAppleMusic(url: string): Omit<ParsedEntity, "linkedId"> | null {
   return null;
 }
 
-function parseDeezer(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseDeezer(url: string): Omit<ParsedEntity, "lantId"> | null {
   const match = url.match(/deezer\.com\/(?:[a-z]{2}\/)?(track|artist|album)\/(\d+)/i);
   if (!match) return null;
 
@@ -100,7 +100,7 @@ function parseDeezer(url: string): Omit<ParsedEntity, "linkedId"> | null {
   };
 }
 
-function parseTidal(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseTidal(url: string): Omit<ParsedEntity, "lantId"> | null {
   const match = url.match(/tidal\.com\/(?:browse\/)?(track|artist|album)\/(\d+)/i);
   if (!match) return null;
 
@@ -114,7 +114,7 @@ function parseTidal(url: string): Omit<ParsedEntity, "linkedId"> | null {
   };
 }
 
-function parseYouTube(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseYouTube(url: string): Omit<ParsedEntity, "lantId"> | null {
   const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
   if (!match) return null;
 
@@ -126,7 +126,7 @@ function parseYouTube(url: string): Omit<ParsedEntity, "linkedId"> | null {
   };
 }
 
-function parseAmazonMusic(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseAmazonMusic(url: string): Omit<ParsedEntity, "lantId"> | null {
   const trackMatch = url.match(/music\.amazon\.com\/albums\/[A-Z0-9]+\?trackAsin=([A-Z0-9]+)/i);
   if (trackMatch) {
     return {
@@ -160,7 +160,7 @@ function parseAmazonMusic(url: string): Omit<ParsedEntity, "linkedId"> | null {
   return null;
 }
 
-function parseBandcamp(url: string): Omit<ParsedEntity, "linkedId"> | null {
+function parseBandcamp(url: string): Omit<ParsedEntity, "lantId"> | null {
   // Album: artist.bandcamp.com/album/name
   const albumMatch = url.match(/([a-z0-9-]+)\.bandcamp\.com\/album\/([a-z0-9-]+)/i);
   if (albumMatch) {

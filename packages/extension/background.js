@@ -1,4 +1,4 @@
-const BASE_URL = "https://linkedapp.ddns.net";
+const BASE_URL = "https://lant.lol";
 const MUSIC_PATTERNS = [
   /open\.spotify\.com\/(track|artist|album)\//,
   /music\.apple\.com\/.*\/(album|artist|song)\//,
@@ -29,14 +29,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       .then((data) => {
         sendResponse({
           success: !data.error,
-          linkedUrl: data.linkedUrl
-            ? `${BASE_URL}${data.linkedUrl}`
+          lantUrl: data.lantUrl
+            ? `${BASE_URL}${data.lantUrl}`
             : null,
           entity: data.entity || null,
         });
       })
       .catch(() => {
-        sendResponse({ success: false, linkedUrl: null });
+        sendResponse({ success: false, lantUrl: null });
       });
     return true; // Keep message channel open for async response
   }
@@ -52,8 +52,8 @@ chrome.action.onClicked.addListener(async (tab) => {
       body: JSON.stringify({ url: tab.url }),
     });
     const data = await response.json();
-    if (data.linkedUrl) {
-      chrome.tabs.update(tab.id, { url: `${BASE_URL}${data.linkedUrl}` });
+    if (data.lantUrl) {
+      chrome.tabs.update(tab.id, { url: `${BASE_URL}${data.lantUrl}` });
     }
   } catch {
     // Silently fail
