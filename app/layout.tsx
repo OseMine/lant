@@ -112,12 +112,12 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   other: {
-    "theme-color": "#6c5ce7",
+    "theme-color": "#11DD66",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#6c5ce7",
+  themeColor: "#11DD66",
   width: "device-width",
   initialScale: 1,
 };

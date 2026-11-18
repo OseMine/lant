@@ -47,8 +47,37 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const ogImageUrl = `${BASE_URL}/api/og?title=${encodeURIComponent(data.name)}&artist=${encodeURIComponent(data.artist || '')}&image=${encodeURIComponent(data.image || '')}`;
     const description = `Listen to ${data.name}${data.artist ? ` by ${data.artist}` : ""} on any platform - Spotify, Apple Music, Deezer, Tidal, YouTube, and more.`;
 
-    // Determine Open Graph type based on entity type
-    const ogType = type === "album" ? "music.album" : type === "artist" ? "music.musician" : "music.song";
+    const openGraph: Metadata["openGraph"] = {
+      title,
+      description,
+      url: canonicalUrl,
+      siteName: "lant",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${data.name}${data.artist ? ` by ${data.artist}` : ""} - lant`,
+          type: "image/png",
+        },
+      ],
+      ...(type === "artist"
+        ? {
+            type: "profile",
+            username: data.name,
+          }
+        : type === "album"
+        ? {
+            type: "music.album",
+            musicians: data.artist ? [data.artist] : undefined,
+            releaseDate: data.year ? data.year.toString() : undefined,
+          }
+        : {
+            type: "music.song",
+            musicians: data.artist ? [data.artist] : undefined,
+            duration: data.tracks[0]?.duration,
+          }),
+    };
 
     return {
       title,
@@ -56,25 +85,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       alternates: {
         canonical: canonicalUrl,
       },
-      openGraph: {
-        title,
-        description,
-        url: canonicalUrl,
-        siteName: "lant",
-        type: ogType as "music.song" | "music.album",
-        images: [
-          {
-            url: ogImageUrl,
-            width: 1200,
-            height: 630,
-            alt: `${data.name}${data.artist ? ` by ${data.artist}` : ""} - lant`,
-          },
-        ],
-        ...(type === "song" && data.artist && { musician: data.artist }),
-        ...(type === "song" && data.tracks[0]?.duration && { releaseDate: data.tracks[0].duration.toString() }),
-        ...(type === "album" && data.artist && { musician: data.artist }),
-        ...(type === "album" && data.year && { releaseDate: data.year.toString() }),
-      },
+      openGraph,
       twitter: {
         card: "summary_large_image",
         title,
@@ -86,6 +97,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         follow: true,
       },
       other: {
+        "theme-color": "#11DD66",
         "music:duration": data.tracks[0]?.duration?.toString() || "",
       },
     };

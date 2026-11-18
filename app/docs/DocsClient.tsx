@@ -20,7 +20,7 @@ export function CodeTabs() {
             onClick={() => setLang(k as "bash" | "js" | "py")}
             style={{
               padding: "4px 10px", fontSize: 11, fontWeight: 600,
-              border: `1px solid ${lang === k ? "#6c5ce7" : "#333"}`,
+              border: `1px solid ${lang === k ? "#11DD66" : "#333"}`,
               borderRadius: 6,
               background: lang === k ? "rgba(108,92,231,0.15)" : "transparent",
               color: lang === k ? "#fff" : "#a1a1a6",
@@ -48,7 +48,7 @@ export function EndpointList({ endpoints }: { endpoints: Array<{ method: string;
       {endpoints.map((ep) => (
         <div key={ep.path} style={{ background: "#161617", border: "1px solid #333", borderRadius: 16, padding: 20, marginBottom: 24, overflow: "hidden" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 12, borderBottom: "1px solid #333", marginBottom: 12 }}>
-            <span style={{ padding: "4px 10px", borderRadius: 6, fontSize: 12, fontWeight: 700, color: "#fff", background: ep.method === "POST" ? "#00b894" : "#6c5ce7" }}>{ep.method}</span>
+            <span style={{ padding: "4px 10px", borderRadius: 6, fontSize: 12, fontWeight: 700, color: "#fff", background: ep.method === "POST" ? "#00b894" : "#11DD66" }}>{ep.method}</span>
             <code style={{ fontFamily: "monospace", fontSize: 15, color: "#f5f5f7" }}>{ep.path}</code>
             <span style={{ marginLeft: "auto", fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "#a1a1a6", padding: "4px 10px", border: "1px solid #333", borderRadius: 20 }}>{ep.badge}</span>
           </div>
@@ -68,7 +68,7 @@ export function EndpointList({ endpoints }: { endpoints: Array<{ method: string;
                   {ep.params.map((p) => (
                     <tr key={p.name} style={{ borderBottom: "1px solid rgba(51,51,54,0.6)" }}>
                       <td style={{ padding: 12, color: "#f5f5f7", fontWeight: 500, fontFamily: "monospace", fontSize: 12 }}>{p.name}{p.required && <span style={{ color: "#ff453a", marginLeft: 3 }}>*</span>}</td>
-                      <td style={{ padding: 12 }}><code style={{ padding: "2px 6px", background: "rgba(108,92,231,0.1)", border: "1px solid rgba(108,92,231,0.2)", borderRadius: 4, color: "#a29bfe", fontSize: 11, fontFamily: "monospace" }}>{p.type}</code></td>
+                      <td style={{ padding: 12 }}><code style={{ padding: "2px 6px", background: "rgba(108,92,231,0.1)", border: "1px solid rgba(108,92,231,0.2)", borderRadius: 4, color: "#66ee99", fontSize: 11, fontFamily: "monospace" }}>{p.type}</code></td>
                       <td style={{ padding: 12 }}><span style={{ fontSize: 11, padding: "2px 6px", background: "rgba(255,255,255,0.04)", border: "1px solid #333", borderRadius: 4 }}>{p.in}</span></td>
                       <td style={{ padding: 12, color: "#a1a1a6" }}>{p.desc}</td>
                     </tr>

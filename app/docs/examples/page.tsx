@@ -316,7 +316,7 @@ export default function ExamplesPage() {
           ← API Reference
         </Link>
 
-        <div style={{ marginBottom: 8, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#6c5ce7" }}>API Reference</div>
+        <div style={{ marginBottom: 8, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#11DD66" }}>API Reference</div>
         <h1 style={{ fontSize: 40, fontWeight: 700, margin: "0 0 12px", letterSpacing: -1, background: "linear-gradient(135deg, #fff 0%, #a1a1a6 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Examples</h1>
         <p style={{ fontSize: 16, color: "#a1a1a6", margin: "0 0 48px", lineHeight: 1.6 }}>
           Working examples for every endpoint. Copy and run them in your terminal or application.
@@ -327,7 +327,7 @@ export default function ExamplesPage() {
             <div key={ex.id} id={ex.id} style={{ background: "#161617", border: "1px solid #333", borderRadius: 20, overflow: "hidden" }}>
               <div style={{ padding: "24px 28px 20px", borderBottom: "1px solid #333", display: "flex", alignItems: "flex-start", gap: 14 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
-                  <span style={{ padding: "4px 10px", borderRadius: 6, fontSize: 12, fontWeight: 700, color: "#fff", background: ex.method === "POST" ? "#00b894" : "#6c5ce7" }}>{ex.method}</span>
+                  <span style={{ padding: "4px 10px", borderRadius: 6, fontSize: 12, fontWeight: 700, color: "#fff", background: ex.method === "POST" ? "#00b894" : "#11DD66" }}>{ex.method}</span>
                   <code style={{ fontFamily: "monospace", fontSize: 15, color: "#f5f5f7" }}>{ex.path}</code>
                   <span style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "#a1a1a6", padding: "4px 10px", border: "1px solid #333", borderRadius: 20 }}>{ex.badge}</span>
                 </div>
@@ -339,12 +339,12 @@ export default function ExamplesPage() {
 
                 {Object.keys(ex.request).length > 0 && (
                   <div style={{ marginBottom: 20 }}>
-                    <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#6c5ce7", marginBottom: 8 }}>Request parameters</div>
+                    <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#11DD66", marginBottom: 8 }}>Request parameters</div>
                     <div style={{ background: "#0d0d10", border: "1px solid #333", borderRadius: 10, padding: 14, fontFamily: "'JetBrains Mono', 'Fira Code', Consolas, monospace", fontSize: 13, color: "#cdd6f4" }}>
                       <div style={{ color: "#a1a1a6", marginBottom: 8 }}>Parameters:</div>
                       {Object.entries(ex.request).map(([k, v]) => (
                         <div key={k} style={{ display: "flex", gap: 8, marginBottom: 4 }}>
-                          <span style={{ color: "#a29bfe" }}>{k}</span>
+                          <span style={{ color: "#66ee99" }}>{k}</span>
                           <span style={{ color: "#a1a1a6" }}>=</span>
                           <span style={{ color: "#f5f5f7" }}>{JSON.stringify(v)}</span>
                         </div>
@@ -354,12 +354,12 @@ export default function ExamplesPage() {
                 )}
 
                 <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#6c5ce7", marginBottom: 8 }}>Code examples</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#11DD66", marginBottom: 8 }}>Code examples</div>
                   <CodeExampleTabs examples={ex} />
                 </div>
 
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#6c5ce7", marginBottom: 8 }}>Example response</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#11DD66", marginBottom: 8 }}>Example response</div>
                   <pre style={{ margin: 0, padding: 16, background: "#0d0d10", border: "1px solid #333", borderRadius: 10, overflowX: "auto", fontSize: 13, lineHeight: 1.7, color: "#cdd6f4", fontFamily: "'JetBrains Mono', 'Fira Code', Consolas, monospace" }}>{ex.response}</pre>
                 </div>
               </div>

@@ -594,7 +594,7 @@ html {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  color: #6c5ce7;
+  color: #11DD66;
   margin: 0 0 10px;
 }
 
@@ -659,7 +659,7 @@ html {
 .home-artist-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 50%);
+  background: linear-gradient(to top, #11dd661F 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -723,8 +723,8 @@ html {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: rgba(108, 92, 231, 0.15);
-  color: #6c5ce7;
+  background: rgba(17, 221, 102, 0.15);
+  color: #11DD66;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 18px;
@@ -780,6 +780,7 @@ html {
 
 .home-platform-icons img:hover {
   opacity: 0.8;
+  color:#11dd6626
 }
 
 /* Footer */
@@ -966,10 +967,10 @@ html {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: rgba(108, 92, 231, 0.15);
+  background: rgba(17, 221, 102, 0.15);
   border: 1px solid rgba(108, 92, 231, 0.3);
   border-radius: 10px;
-  color: #a29bfe;
+  color: #66ee99;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -1085,8 +1086,8 @@ html {
 }
 
 .share-tab.active {
-  background: rgba(108, 92, 231, 0.15);
-  color: #a29bfe;
+  background: rgba(17, 221, 102, 0.15);
+  color: #66ee99;
 }
 
 .share-content {

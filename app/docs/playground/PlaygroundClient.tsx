@@ -196,7 +196,7 @@ sys.stderr = StringIO()
     <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: 0, background: "#161617", border: "1px solid #333", borderRadius: 20, overflow: "hidden", minHeight: 520 }}>
         <div style={{ borderRight: "1px solid #333", padding: "20px 0" }}>
-          <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#6c5ce7", padding: "0 16px 10px", borderBottom: "1px solid rgba(255,255,255,0.06)", marginBottom: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.8, color: "#11DD66", padding: "0 16px 10px", borderBottom: "1px solid rgba(255,255,255,0.06)", marginBottom: 8 }}>
             Endpoints
           </div>
           {ENDPOINTS.map((ep, i) => (
@@ -207,7 +207,7 @@ sys.stderr = StringIO()
               style={{
                 display: "block", width: "100%", textAlign: "left",
                 padding: "10px 16px", background: selected === i ? "rgba(108,92,231,0.1)" : "transparent",
-                border: "none", borderLeft: `2px solid ${selected === i ? "#6c5ce7" : "transparent"}`,
+                border: "none", borderLeft: `2px solid ${selected === i ? "#11DD66" : "transparent"}`,
                 color: selected === i ? "#f5f5f7" : "#a1a1a6", cursor: "pointer",
                 fontSize: 13, fontFamily: "inherit",
               }}
@@ -220,7 +220,7 @@ sys.stderr = StringIO()
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ padding: "14px 20px", borderBottom: "1px solid #333", display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ padding: "3px 8px", borderRadius: 5, fontSize: 11, fontWeight: 700, color: "#fff", background: ENDPOINTS[selected].method === "POST" ? "#00b894" : "#6c5ce7" }}>
+            <span style={{ padding: "3px 8px", borderRadius: 5, fontSize: 11, fontWeight: 700, color: "#fff", background: ENDPOINTS[selected].method === "POST" ? "#00b894" : "#11DD66" }}>
               {ENDPOINTS[selected].method}
             </span>
             <code style={{ fontFamily: "monospace", fontSize: 13, color: "#f5f5f7" }}>{ENDPOINTS[selected].path}</code>
@@ -229,7 +229,7 @@ sys.stderr = StringIO()
 
           <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
             <div style={{ padding: "10px 16px", borderBottom: "1px solid #333", display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 12, fontWeight: 600, color: "#6c5ce7" }}>Python</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: "#11DD66" }}>Python</span>
               <span style={{ fontSize: 11, color: "#a1a1a6", marginLeft: "auto" }}>requests · json</span>
             </div>
             <textarea
@@ -260,7 +260,7 @@ sys.stderr = StringIO()
               disabled={!pyodideReady || isRunning}
               style={{
                 marginLeft: "auto", padding: "7px 20px", borderRadius: 8,
-                background: isRunning || !pyodideReady ? "#333" : "#6c5ce7",
+                background: isRunning || !pyodideReady ? "#333" : "#11DD66",
                 border: "none", color: isRunning || !pyodideReady ? "#666" : "#fff",
                 fontWeight: 700, fontSize: 13, cursor: isRunning || !pyodideReady ? "not-allowed" : "pointer",
                 fontFamily: "inherit",
@@ -274,7 +274,7 @@ sys.stderr = StringIO()
 
       {output.length > 0 && (
         <div style={{ background: "#0d0d10", border: "1px solid #333", borderRadius: 14, overflow: "hidden" }}>
-          <div style={{ padding: "10px 16px", borderBottom: "1px solid #333", fontSize: 11, fontWeight: 600, color: "#6c5ce7", textTransform: "uppercase", letterSpacing: 0.8 }}>
+          <div style={{ padding: "10px 16px", borderBottom: "1px solid #333", fontSize: 11, fontWeight: 600, color: "#11DD66", textTransform: "uppercase", letterSpacing: 0.8 }}>
             Output
           </div>
           <pre ref={outputRef} style={{ margin: 0, padding: "16px 20px", overflowX: "auto", fontSize: 13, lineHeight: 1.7, color: "#cdd6f4", fontFamily: "'JetBrains Mono', 'Fira Code', Consolas, monospace", maxHeight: 300, overflowY: "auto" }}>
@@ -286,7 +286,7 @@ sys.stderr = StringIO()
       )}
 
       <div style={{ background: "#161617", border: "1px solid #333", borderRadius: 14, padding: "16px 20px", fontSize: 13, color: "#a1a1a6" }}>
-        <strong style={{ color: "#f5f5f7" }}>How it works:</strong> The playground runs a Python interpreter (Pyodide) entirely in your browser — no server needed. Code is executed client-side and makes real API calls to <code style={{ color: "#a29bfe" }}>lant.lol</code>.
+        <strong style={{ color: "#f5f5f7" }}>How it works:</strong> The playground runs a Python interpreter (Pyodide) entirely in your browser — no server needed. Code is executed client-side and makes real API calls to <code style={{ color: "#66ee99" }}>lant.lol</code>.
       </div>
     </div>
   );

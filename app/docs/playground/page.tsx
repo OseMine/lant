@@ -45,7 +45,7 @@ export default function PlaygroundPage() {
           ← API Reference
         </Link>
 
-        <div style={{ marginBottom: 8, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#6c5ce7" }}>API Reference</div>
+        <div style={{ marginBottom: 8, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#11DD66" }}>API Reference</div>
         <h1 style={{ fontSize: 40, fontWeight: 700, margin: "0 0 12px", letterSpacing: -1, background: "linear-gradient(135deg, #fff 0%, #a1a1a6 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Playground</h1>
         <p style={{ fontSize: 16, color: "#a1a1a6", margin: "0 0 40px", lineHeight: 1.6 }}>
           Test every endpoint directly in your browser. Write Python, run it, and see live results — powered by PyScript.

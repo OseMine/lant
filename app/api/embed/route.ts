@@ -70,7 +70,7 @@ function buildEmbedHtml(opts: EmbedOpts): string {
   const fg = "#ffffff";
   const sub = "#a1a1a6";
   const border = "#222225";
-  const accent = "#6c5ce7";
+  const accent = "#11DD66";
 
   const imgTag = image
     ? `<img src="${esc(image)}" alt="${esc(title)}" style="width:80px;height:80px;border-radius:12px;object-fit:cover;" />`

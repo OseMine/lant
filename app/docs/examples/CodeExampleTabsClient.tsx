@@ -19,7 +19,7 @@ export function CodeExampleTabsClient({ examples }: { examples: { curl: string; 
             onClick={() => setLang(k)}
             style={{
               padding: "4px 10px", fontSize: 11, fontWeight: 600,
-              border: `1px solid ${lang === k ? "#6c5ce7" : "#333"}`,
+              border: `1px solid ${lang === k ? "#11DD66" : "#333"}`,
               borderRadius: 6,
               background: lang === k ? "rgba(108,92,231,0.15)" : "transparent",
               color: lang === k ? "#fff" : "#a1a1a6",

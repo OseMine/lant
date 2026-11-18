@@ -61,12 +61,12 @@ export default function DocsPage() {
           <Link href="/" style={{ color: "#a1a1a6", textDecoration: "none", fontSize: 14, display: "inline-block", padding: "8px 16px", background: "#161617", border: "1px solid #333", borderRadius: 8, marginBottom: 16 }}>
             ← Back home
           </Link>
-          <div style={{ marginBottom: 8, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#6c5ce7" }}>
+          <div style={{ marginBottom: 8, fontFamily: "-apple-system, sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#11DD66" }}>
             API Reference
           </div>
           <h1 style={{ fontSize: 36, fontWeight: 700, margin: "0 0 8px", letterSpacing: -1, background: "linear-gradient(135deg, #fff 0%, #a1a1a6 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>lant API</h1>
           <div style={{ fontSize: 14, color: "#a1a1a6", marginBottom: 20, lineHeight: 1.5 }}>One link to rule them all.</div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: "#a29bfe", background: "rgba(108,92,231,0.15)", padding: "3px 10px", borderRadius: 20, display: "inline-block", marginBottom: 24 }}>v{API_VERSION}</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: "#66ee99", background: "rgba(108,92,231,0.15)", padding: "3px 10px", borderRadius: 20, display: "inline-block", marginBottom: 24 }}>v{API_VERSION}</div>
 
           <nav style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 8, display: "flex", flexDirection: "column", gap: 2 }} aria-label="Section links">
             {[
@@ -112,7 +112,7 @@ export default function DocsPage() {
                 <p style={{ fontSize: 13, color: "#a1a1a6", margin: "0 0 16px", lineHeight: 1.5 }}>Source URLs accepted by <code>/api/resolve</code>.</p>
                 {["Spotify (sp)", "Apple Music (am)", "Deezer (dz)", "Tidal (td)", "YouTube (yt)", "Amazon Music (az)", "Bandcamp (bc)"].map((line) => (
                   <div key={line} style={{ display: "flex", gap: 10, padding: "6px 0", borderBottom: "1px solid rgba(51,51,54,0.4)", alignItems: "center", fontSize: 14, color: "#a1a1a6" }}>
-                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6c5ce7", flexShrink: 0 }} />
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#11DD66", flexShrink: 0 }} />
                     <span style={{ flex: 1 }}>{line}</span>
                   </div>
                 ))}
@@ -132,12 +132,12 @@ export default function DocsPage() {
 
           <section id="lant-ids" style={{ marginBottom: 64 }}>
             <h2 style={{ fontSize: 24, fontWeight: 700, letterSpacing: -0.3, color: "#f5f5f7", margin: "0 0 24px", paddingBottom: 16, borderBottom: "1px solid #333" }}>lant IDs</h2>
-            <p style={{ fontSize: 15, color: "#a1a1a6", lineHeight: 1.65, margin: "0 0 16px" }}>Every entity gets a compact, URL-safe lant ID. Format: <code style={{ fontSize: 14, padding: "2px 6px", background: "#161617", border: "1px solid #333", borderRadius: 6, color: "#a29bfe" }}>{`{type}{platform}-{id}`}</code></p>
+            <p style={{ fontSize: 15, color: "#a1a1a6", lineHeight: 1.65, margin: "0 0 16px" }}>Every entity gets a compact, URL-safe lant ID. Format: <code style={{ fontSize: 14, padding: "2px 6px", background: "#161617", border: "1px solid #333", borderRadius: 6, color: "#66ee99" }}>{`{type}{platform}-{id}`}</code></p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 16 }}>
               {[
-                { id: "sp-1wNgc05aCdwZHRuC9wMixm", label: "song · Spotify", idColor: "#6c5ce7", codeColor: "#00b894" },
-                { id: "al-3qTXcsxYQGjBOZ8Ds2ZkyG", label: "album · Spotify", idColor: "#6c5ce7", codeColor: "#00b894" },
-                { id: "at-0MZ55DwuMQ1B2TXq9lcrE4", label: "artist · Spotify", idColor: "#6c5ce7", codeColor: "#00b894" },
+                { id: "sp-1wNgc05aCdwZHRuC9wMixm", label: "song · Spotify", idColor: "#11DD66", codeColor: "#00b894" },
+                { id: "al-3qTXcsxYQGjBOZ8Ds2ZkyG", label: "album · Spotify", idColor: "#11DD66", codeColor: "#00b894" },
+                { id: "at-0MZ55DwuMQ1B2TXq9lcrE4", label: "artist · Spotify", idColor: "#11DD66", codeColor: "#00b894" },
               ].map((ex) => (
                 <div key={ex.id} style={{ background: "#161617", border: "1px solid #333", borderRadius: 12, padding: 16 }}>
                   <code style={{ fontFamily: "monospace", fontSize: 14, color: "#cdd6f4", display: "block", marginBottom: 10 }}>{ex.id}</code>
@@ -148,7 +148,7 @@ export default function DocsPage() {
             <div style={{ background: "#161617", border: "1px solid #333", borderRadius: 12, padding: 16 }}>
               <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "#8a8a9e", marginBottom: 8 }}>Codes</div>
               <div style={{ fontFamily: "monospace", fontSize: 13, lineHeight: 1.7, color: "#cdd6f4" }}>
-                <div style={{ marginBottom: 4 }}><strong style={{ color: "#6c5ce7" }}>Type:</strong> s = song &nbsp; l = album &nbsp; a = artist</div>
+                <div style={{ marginBottom: 4 }}><strong style={{ color: "#11DD66" }}>Type:</strong> s = song &nbsp; l = album &nbsp; a = artist</div>
                 <div><strong style={{ color: "#00b894" }}>Platform:</strong> sp = Spotify &nbsp; dz = Deezer &nbsp; td = Tidal &nbsp; am = Apple Music &nbsp; yt = YouTube &nbsp; az = Amazon Music &nbsp; ytm = YouTube Music &nbsp; azm = Amazon Music &nbsp; bc = Bandcamp</div>
               </div>
             </div>

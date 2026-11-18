@@ -85,7 +85,7 @@ function buildEmbedHtml(opts: {
   <div style="flex:1;min-width:0;">
     <div style="font-size:16px;font-weight:600;color:${fg};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(title)}</div>
     <div style="font-size:13px;color:${sub};margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${escapeHtml(author)}</div>
-    <a href="${escapeAttr(lantUrl)}" style="display:inline-block;margin-top:8px;padding:6px 14px;background:#6c5ce7;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Open in lant</a>
+    <a href="${escapeAttr(lantUrl)}" style="display:inline-block;margin-top:8px;padding:6px 14px;background:#11DD66;color:#fff;border-radius:6px;text-decoration:none;font-size:12px;font-weight:500;">Open in lant</a>
   </div>
 </div>`;
 }
