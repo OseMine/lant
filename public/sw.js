@@ -2,6 +2,12 @@ const CACHE_NAME = "lant-v1";
 const STATIC_ASSETS = [
   "/",
   "/favicon.ico",
+  "/icon/Icon-16.png",
+  "/icon/Icon-32.png",
+  "/icon/Icon-48.png",
+  "/icon/Icon-180.png",
+  "/icon/Icon-192.png",
+  "/icon/Icon-512.png",
   "/images.svg",
   "/manifest.json",
 ];

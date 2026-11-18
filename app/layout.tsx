@@ -36,7 +36,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "lant - Share Music with Anyone",
+    default: "lant - One link to rule them all",
     template: "%s | lant",
   },
   description: "Share your favorite music across any platform. One universal link that opens in Spotify, Apple Music, Deezer, Tidal, YouTube, and more. Works with lyrics, previews, and QR codes.",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: BASE_URL,
     siteName: "lant",
-    title: "lant - Share Music with Anyone",
+    title: "lant - One link to rule them all",
     description: "One universal link for all music platforms. Share songs, albums, and artists across Spotify, Apple Music, Deezer, Tidal, YouTube, and more.",
     images: [
       {
@@ -82,15 +82,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "lant - Share Music with Anyone",
+    title: "lant - One link to rule them all",
     description: "One universal link for all music platforms. Share songs, albums, and artists across Spotify, Apple Music, Deezer, Tidal, YouTube, and more.",
     images: ["/api/og?title=lant&artist=Share Music Anywhere"],
     creator: "@lantApp",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon/Icon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon/Icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon/Icon-48.png", sizes: "48x48", type: "image/png" },
+    ],
     shortcut: "/favicon.ico",
-    apple: "/icons/icon-192.png",
+    apple: [
+      { url: "/icon/Icon-180.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   manifest: "/manifest.json",
   verification: {
@@ -145,7 +152,7 @@ function StructuredData() {
         url: BASE_URL,
         logo: {
           "@type": "ImageObject",
-          url: `${BASE_URL}/icons/icon-512.png`,
+          url: `${BASE_URL}/icon/Icon-512.png`,
           width: 512,
           height: 512,
         },
@@ -197,7 +204,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon/Icon-180.png" />
         <PreconnectLinks />
         <StructuredData />
       </head>

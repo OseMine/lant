@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import EntityHero from "@/components/EntityHero";
 import UnsupportedContent from "@/components/UnsupportedContent";
+import type { Viewport } from 'next';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lant.lol";
 
@@ -13,6 +14,10 @@ export const instant = false;
 interface PageProps {
   params: Promise<{ type: string; id: string }>;
 }
+
+export const viewport: Viewport = {
+  themeColor: '#11DD66', // Replace with your exact brand/accent color hex
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { type, id } = await params;
