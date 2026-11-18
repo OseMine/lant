@@ -1,3 +1,4 @@
+import type { EntityData } from "@/lib/songlink";
 import { decodelantId } from "@/lib/lant-id";
 import { getMusicDataCached } from "@/lib/songlink";
 import { notFound } from "next/navigation";
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const data = await getMusicDataCached(decoded.platform, decoded.type, decoded.platformId);
     const title = decoded.type === "artist" ? data.name : `${data.name} - ${data.artist}`;
     const canonicalUrl = `${BASE_URL}/${type}/${id}`;
+    const imageSrc = data.image || "/images.svg";
     const ogImageUrl = `${BASE_URL}/api/og?title=${encodeURIComponent(data.name)}&artist=${encodeURIComponent(data.artist || '')}&image=${encodeURIComponent(data.image || '')}`;
     const description = `Listen to ${data.name}${data.artist ? ` by ${data.artist}` : ""} on any platform - Spotify, Apple Music, Deezer, Tidal, YouTube, and more.`;
 
@@ -54,9 +56,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: "lant",
       images: [
         {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
+          url: imageSrc,
+          width: 400,
+          height: 400,
           alt: `${data.name}${data.artist ? ` by ${data.artist}` : ""} - lant`,
           type: "image/png",
         },
@@ -75,7 +77,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : {
             type: "music.song",
             musicians: data.artist ? [data.artist] : undefined,
-            duration: data.tracks[0]?.duration,
+            duration: data.tracks?.[0]?.duration,
           }),
     };
 
@@ -98,7 +100,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
       other: {
         "theme-color": "#11DD66",
-        "music:duration": data.tracks[0]?.duration?.toString() || "",
+        "music:duration": data.tracks?.[0]?.duration?.toString() || "",
       },
     };
   } catch {
@@ -130,7 +132,7 @@ function MusicEntityJsonLd({ data, type, id }: { data: any; type: string; id: st
   };
 
   if (type === "song") {
-    const trackDuration = data.tracks[0]?.duration;
+    const trackDuration = data.tracks?.[0]?.duration;
     jsonLd = {
       ...jsonLd,
       "@type": "MusicRecording",
@@ -187,12 +189,12 @@ export default async function EntityPage({ params }: PageProps) {
     notFound();
   }
 
-  // Handle podcast/audiobook types with unsupported message
+  // Handle podcast/audiobook types with unsupported message early
   if (type === "podcast" || type === "audiobook") {
     return <UnsupportedContent type={type} />;
   }
 
-  let data;
+  let data: EntityData;
   try {
     data = await getMusicDataCached(decoded.platform, decoded.type, decoded.platformId);
   } catch (error) {

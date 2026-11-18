@@ -630,6 +630,59 @@ async function ytMusicSearch(
 // Tidal album/artist search via the credentialed OpenAPI (v2) searchResults
 // endpoint. Requires TIDAL_CLIENT_ID / TIDAL_CLIENT_SECRET. Degrades gracefully
 // (returns null) without them.
+async function tidalGetArtist(id: string): Promise<{ name: string } | null> {
+  const clientId = process.env.TIDAL_CLIENT_ID;
+  const clientSecret = process.env.TIDAL_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return null;
+  const token = await getTidalAccessToken(clientId, clientSecret);
+  if (!token) return null;
+  try {
+    const response = await fetch(
+      `https://openapi.tidal.com/v2/artists/${encodeURIComponent(id)}?countryCode=US`,
+      {
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.api+json" },
+        next: { revalidate: 3600 },
+      }
+    );
+    if (!response.ok) return null;
+    const json = await response.json();
+    const name = json?.data?.attributes?.name;
+    return name ? { name } : null;
+  } catch {
+    return null;
+  }
+}
+
+async function tidalGetAlbum(
+  id: string
+): Promise<{ title: string; artist: string | null; year: number | null } | null> {
+  const clientId = process.env.TIDAL_CLIENT_ID;
+  const clientSecret = process.env.TIDAL_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return null;
+  const token = await getTidalAccessToken(clientId, clientSecret);
+  if (!token) return null;
+  try {
+    const response = await fetch(
+      `https://openapi.tidal.com/v2/albums/${encodeURIComponent(id)}?countryCode=US&include=artists`,
+      {
+        headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.api+json" },
+        next: { revalidate: 3600 },
+      }
+    );
+    if (!response.ok) return null;
+    const json = await response.json();
+    const title = json?.data?.attributes?.title;
+    const releaseDate = json?.data?.attributes?.releaseDate;
+    const year = releaseDate ? new Date(releaseDate).getFullYear() : null;
+    const artistRel = json?.data?.relationships?.artists?.data?.[0]?.id;
+    const artistObj = json?.included?.find((i: any) => i.id === artistRel);
+    const artist = artistObj?.attributes?.name || null;
+    return title ? { title, artist, year } : null;
+  } catch {
+    return null;
+  }
+}
+
 async function tidalSearchAlbumArtist(
   query: string,
   type: "album" | "artist"
@@ -647,10 +700,35 @@ async function tidalSearchAlbumArtist(
     );
     if (!response.ok) return null;
     const json = await response.json();
-    const items = json?.data?.relationships?.[include]?.data;
-    const hit = Array.isArray(items) ? items.find((i: any) => i.type === include) : null;
-    if (!hit?.id) return null;
-    return `https://tidal.com/browse/${type}/${hit.id}`;
+
+    // Tidal v2 searchResults returns data as an array: [ { relationships: { artists/albums: { data: [...] } } } ]
+    const searchObj = Array.isArray(json?.data) ? json.data[0] : json?.data;
+    const items = searchObj?.relationships?.[include]?.data;
+    const included = Array.isArray(json?.included) ? json.included : [];
+
+    const queryLower = query.toLowerCase();
+    if (type === "artist") {
+      const exact = included.find(
+        (i: any) => i.type === "artists" && i.attributes?.name?.toLowerCase() === queryLower
+      );
+      if (exact?.id) {
+        return `https://tidal.com/browse/artist/${exact.id}`;
+      }
+    } else {
+      const exact = included.find(
+        (i: any) => i.type === "albums" && i.attributes?.title?.toLowerCase() === queryLower
+      );
+      if (exact?.id) {
+        return `https://tidal.com/browse/album/${exact.id}`;
+      }
+    }
+
+    const topItem = Array.isArray(items) && items.length > 0 ? items[0] : null;
+    if (topItem?.id) {
+      return `https://tidal.com/browse/${type}/${topItem.id}`;
+    }
+
+    return null;
   } catch {
     return null;
   }
@@ -784,6 +862,24 @@ async function resolveSource(
       if (tidal.album && entity.links.tidal) {
         entity.links.tidal = `https://tidal.com/browse/track/${tidal.id}`;
       }
+    }
+    return entity;
+  }
+
+  if (platform === "tidal" && type === "artist") {
+    const tidal = await tidalGetArtist(platformId);
+    if (tidal) {
+      entity.name = tidal.name;
+    }
+    return entity;
+  }
+
+  if (platform === "tidal" && type === "album") {
+    const tidal = await tidalGetAlbum(platformId);
+    if (tidal) {
+      entity.name = tidal.title;
+      entity.artist = tidal.artist;
+      entity.year = tidal.year;
     }
     return entity;
   }
